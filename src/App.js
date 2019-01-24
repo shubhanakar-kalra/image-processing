@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Dashboard from './containers/dashboard';
 import './App.css';
 
