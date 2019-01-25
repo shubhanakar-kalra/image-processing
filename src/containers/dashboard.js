@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import ReactImageMapper from './../components/imageMapper';
 
 import PrimarySearchAppBar from '../components/header';
 import Snackbar from '../components/snackBar';
@@ -34,8 +35,12 @@ class CenteredGrid extends React.Component {
     message: '',
     showSnackBar: false,
     isMarking: false,
-    polygons: [],
-    mapping: []
+    polygons: [[ [39,167], [5,259], [119,257], [123,168], [43,169] ],
+    [[186, 121], [243, 188], [344, 185], [254, 109], [197, 108], [189, 119]]],
+    
+    // polygons: [],
+    mapping: [],
+    selectedRegion: null,
   }
 
   getCoordinates = (e) => {
@@ -78,17 +83,45 @@ class CenteredGrid extends React.Component {
       ctx.lineTo(lc[1][0], lc[1][1]);
       ctx.stroke();
     }
-    // ctx.beginPath();
-    //   ctx.moveTo(0, 0);
-    //   ctx.lineTo(100, 100);
-    //   ctx.stroke();
+  }
+
+  mappedRegions = () => {
+    const { polygons } = this.state;
+    return polygons.map((polygon, index) => ({
+      name: String(index),
+      shape: "poly",
+      coords: polygon.flat()
+    }))
+  }
+
+  completeMarking = () => {
+    this.setState({ isMarking: false });
+    this.forceUpdate();
+  }
+
+  selectRegion = (e) => {
+    console.log("region", e);
+    this.setState({ selectedRegion: e.name })
+  }
+
+  addEventListener = (e) => {
+    const pos = {
+      x: e.clientX,
+      y: e.clientY
+    };
   }
 
   fillColor = () => {
-    const { polygons } = this.state;
+    let { polygons, selectedRegion } = this.state;
     console.log("fill color", polygons);
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
+
+    if (selectedRegion) {
+      polygons =  polygons.filter((val, ind) => ind == selectedRegion)
+    }
+
+    var c = document.getElementsByTagName("canvas");
+    // console.log("c", c[0]);
+    var ctx = c[0].getContext("2d");
     if (polygons.length) {
       polygons.map(polygon => {
         let region = new Path2D();
@@ -98,9 +131,9 @@ class CenteredGrid extends React.Component {
           }
           region.lineTo(val[0], val[1]);
         })
-  
+
         region.closePath();
-  
+
         // Fill path
         ctx.fillStyle = 'green';
         ctx.fill(region, 'evenodd');
@@ -127,6 +160,7 @@ class CenteredGrid extends React.Component {
       const fileReader = new FileReader();
       fileReader.onload = this.handleFileRead;
       fileReader.readAsDataURL(file);
+      // this.setState({ isMarking: true });
     } else {
       this.setState({ showSnackBar: true, message: 'Image size should be greater than 1MB' });
     }
@@ -135,6 +169,12 @@ class CenteredGrid extends React.Component {
   render() {
     const { classes } = this.props;
     const { showSnackBar, message } = this.state;
+    const mappedRegions = this.mappedRegions();
+    console.log("mappedRegions", mappedRegions);
+    const MAP = {
+      name: "my-map",
+      areas: mappedRegions
+    }
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
@@ -152,14 +192,26 @@ class CenteredGrid extends React.Component {
                 accept=".jpeg"
               />
             </Button>}
-            {this.state.url && !this.state.isMarking &&
+            {this.state.url && this.state.isMarking &&
               <>
                 <canvas className={classes.canvasElement} height="400" width="400" id="myCanvas" onMouseDown={this.getCoordinates} />
                 <img className={classes.image} id="myImg" src={this.state.url} alt='no' />
                 <div style={{ position: "absolute", top: "520px" }}>
                   <button onClick={this.addPolygon}>Add Polygon</button>
                   <button onClick={this.removePreviousMarker}>Remove Previous Marker</button>
-                  <button onClick={this.fillColor}>Complete Mapping</button>
+                  <button onClick={this.completeMarking}>Complete Mapping</button>
+                </div>
+              </>}
+            {this.state.url && !this.state.isMarking &&
+              <>
+                {/* <canvas className={classes.canvasElement} height="400" width="400" id="myCanvas" onClick={this.selectRegion} />
+                <img className={classes.image} id="myImg" src={this.state.url} alt='no' />
+                <map name ="my-map" style={{cursor: "pointer"}}>
+                  {MAP.areas.map(value => <area shape={value.shape} coords={value.coords} />)}
+                </map> */}
+                <ReactImageMapper src={this.state.url} map={MAP} height={400} width={400} onClick={this.selectRegion} />
+                <div style={{ position: "absolute", top: "520px" }}>
+                  <button onClick={this.fillColor}>Fill color</button>
                 </div>
               </>}
 
