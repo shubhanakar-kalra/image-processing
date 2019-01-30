@@ -27,6 +27,11 @@ const styles = theme => ({
   }
 });
 
+const colors = [
+  { name: "red", color: "#FF0000" },
+  { name: "green", color: "#008000" }
+]
+
 
 class CenteredGrid extends React.Component {
 
@@ -35,9 +40,9 @@ class CenteredGrid extends React.Component {
     message: '',
     showSnackBar: false,
     isMarking: false,
-    polygons: [[ [39,167], [5,259], [119,257], [123,168], [43,169] ],
+    polygons: [[[39, 167], [5, 259], [119, 257], [123, 168], [43, 169]],
     [[186, 121], [243, 188], [344, 185], [254, 109], [197, 108], [189, 119]]],
-    
+
     // polygons: [],
     mapping: [],
     selectedRegion: null,
@@ -116,7 +121,7 @@ class CenteredGrid extends React.Component {
     console.log("fill color", polygons);
 
     if (selectedRegion) {
-      polygons =  polygons.filter((val, ind) => ind == selectedRegion)
+      polygons = polygons.filter((val, ind) => ind == selectedRegion)
     }
 
     var c = document.getElementsByTagName("canvas");
@@ -140,6 +145,14 @@ class CenteredGrid extends React.Component {
       })
     }
   }
+
+  // resetCanvas = () => {
+  //   console.log("resetCanvas");
+  //   let canvas = this.canvas;
+  //   let ctx = canvas[0].getContext("2d");
+  //   ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+  //   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // }
 
 
   handleFileRead = (e) => {
@@ -166,11 +179,20 @@ class CenteredGrid extends React.Component {
     }
   }
 
+  onDragEvent = (e) => {
+    e.dataTransfer.setData("text/plain", e.target.id)
+  }
+
+  setRefernce = (node) => {
+    this.canvas = node;
+  }
+
   render() {
+    console.log("canvas", this.canvas);
     const { classes } = this.props;
     const { showSnackBar, message } = this.state;
     const mappedRegions = this.mappedRegions();
-    console.log("mappedRegions", mappedRegions);
+    console.log("mappedRegions", mappedRegions, this.refs);
     const MAP = {
       name: "my-map",
       areas: mappedRegions
@@ -179,10 +201,24 @@ class CenteredGrid extends React.Component {
       <div className={classes.root}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
-            <PrimarySearchAppBar />
+            {/* <PrimarySearchAppBar /> */}
           </Grid>
           <Grid item xs={4}>
-
+            <div>
+              <ul>
+                {colors.map(val => {
+                  return (
+                    <>
+                      <li draggable={true}
+                        id={val.color}
+                        style={{ backgroundColor: val.color, width: "100px" }}
+                        onDragStart={(e) => this.onDragEvent(e)}
+                      ><div>{val.name}</div></li>
+                    </>
+                  )
+                })}
+              </ul>
+            </div>
           </Grid>
           <Grid container item xs={8} alignItems="center" justify="center">
             {!this.state.url && <Button variant="contained" color="default" className={classes.button}>
@@ -209,9 +245,18 @@ class CenteredGrid extends React.Component {
                 <map name ="my-map" style={{cursor: "pointer"}}>
                   {MAP.areas.map(value => <area shape={value.shape} coords={value.coords} />)}
                 </map> */}
-                <ReactImageMapper src={this.state.url} map={MAP} height={400} width={400} onClick={this.selectRegion} />
+                <ReactImageMapper
+                  src={this.state.url}
+                  map={MAP}
+                  height={400}
+                  width={400}
+                  onClick={this.selectRegion}
+                  setRefernce={this.setRefernce}
+                // onDrop={e => this.drop_handler(e)}
+                // onDragOver={e => this.dragover_handler(e)}
+                />
                 <div style={{ position: "absolute", top: "520px" }}>
-                  <button onClick={this.fillColor}>Fill color</button>
+                  <button onClick={this.resetCanvas}>Reset color</button>
                 </div>
               </>}
 

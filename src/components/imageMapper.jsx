@@ -8,10 +8,11 @@ export default class ImageMapper extends Component {
 		let absPos = { position: 'absolute', top: 0, left: 0 };
 		this.styles = {
 			container: { position: 'relative' },
-			canvas: {...absPos, pointerEvents: 'none', zIndex: 2 },
-			img: {...absPos, zIndex: 1, userSelect: 'none' },
+			canvas: { ...absPos, pointerEvents: 'none', zIndex: 2 },
+			img: { ...absPos, zIndex: 1, userSelect: 'none' },
 			map: props.onClick && { cursor: 'pointer' } || undefined
 		};
+		this.dropped = false;
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -66,20 +67,19 @@ export default class ImageMapper extends Component {
 			this.props.onLoad();
 	}
 
-	// hoverOn(area, index, event) {
-	// 	const shape = event.target.getAttribute('shape');
-	// 	if (this.props.active && this['draw' + shape])
-	// 		this['draw' + shape](event.target.getAttribute('coords'));
-	// 	if (this.props.onMouseEnter)
-	// 		this.props.onMouseEnter(area, index, event);
-	// }
+	hoverOn(area, index, event) {
+		console.log("hoverOn", area, index, event)
+		const shape = event.target.getAttribute('shape');
+		if (this.props.onMouseEnter)
+			this.props.onMouseEnter(area, index, event);
+	}
 
-	// hoverOff(area, index, event) {
-	// 	if (this.props.active)
-	// 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-	// 	if (this.props.onMouseLeave)
-	// 		this.props.onMouseLeave(area, index, event);
-	// }
+	hoverOff(area, index, event) {
+		console.log("hoverOff")
+		if (this.props.onMouseLeave)
+			this.props.onMouseLeave(area, index, event);
+		this.dropped = false;
+	}
 
 	click(area, index, event) {
 		if (this.props.onClick) {
@@ -88,29 +88,60 @@ export default class ImageMapper extends Component {
 		}
 	}
 
+	onDragOver(area, index, event) {
+		console.log("on drag over")
+		event.preventDefault();
+		const shape = event.target.getAttribute('shape');
+		event.dataTransfer.dropEffect = "move";
+		if (this.props.onDragOver)
+			this.props.onDragOver(area, index, event);
+	}
+
+	onDrop(area, index, event) {
+		console.log("on drop")
+		event.preventDefault();
+		const shape = event.target.getAttribute('shape');
+		var data = event.dataTransfer.getData("text/plain");
+		console.log("data", data);
+		this.ctx.fillStyle = data;
+		if (this.props.active && this['draw' + shape])
+			this['draw' + shape](event.target.getAttribute('coords'));
+		if (this.props.onDrop)
+			this.props.onDrop(area, index, event);
+		this.dropped = true;
+		this.ctx.fillStyle = this.props.fillColor;
+	}
+
 	renderAreas() {
 		const { imgWidth, width } = this.props
 		// calculate scale based on current 'width' and the original 'imgWidth'
 		const scale = width && imgWidth && imgWidth > 0 ? width / imgWidth : 1
 		// method that is used to scale each area coordinates
-		const scaleCoords = coords => coords.map( coord => coord * scale )
+		const scaleCoords = coords => coords.map(coord => coord * scale)
 
 		return this.props.map.areas.map((area, index) => (
 			<area key={area._id || index} shape={area.shape} coords={scaleCoords(area.coords).join(',')}
-				//   onMouseEnter={this.hoverOn.bind(this, area, index)}
-				//   onMouseLeave={this.hoverOff.bind(this, area, index)}
-				  onClick={this.click.bind(this, area, index)} href={area.href} />
+				// onMouseEnter={this.hoverOn.bind(this, area, index)}
+				// onMouseLeave={this.hoverOff.bind(this, area, index)}
+				onDrop={this.onDrop.bind(this, area, index)}
+				onDragOver={this.onDragOver.bind(this, area, index)}
+				onClick={this.click.bind(this, area, index)} href={area.href} />
 		));
+	}
+
+	setRefernce = (node) => {
+		this.canvas = node;
+		this.props.setRefernce(node);
 	}
 
 	render() {
 		return (
 			<div style={this.styles.container} ref={node => this.container = node}>
 				<img style={this.styles.img} src={this.props.src} useMap={`#${this.props.map.name}`} alt=""
-					 ref={node => this.img = node} onLoad={this.initCanvas}
-					 onClick={this.props.onImageClick} />
-				<canvas ref={node => this.canvas = node} style={this.styles.canvas} />
-				<map name={this.props.map.name} style={this.styles.map}>{ this.renderAreas() }</map>
+					ref={node => this.img = node} onLoad={this.initCanvas}
+					onClick={this.props.onImageClick} />
+				<canvas ref={node => this.setRefernce(node)} style={this.styles.canvas} />
+				<map name={this.props.map.name} style={this.styles.map}>{this.renderAreas()}</map>
 			</div>
 		);
 	}
