@@ -166,7 +166,7 @@ class CenteredGrid extends React.Component {
 
   handleUploadImage = (input) => {
     const file = input.target.files[0];
-    if (file && file.size > 100000) {
+    if (file && file.size > 1000000) {
       const fileReader = new FileReader();
       fileReader.onload = this.handleFileRead;
       fileReader.readAsDataURL(file);
