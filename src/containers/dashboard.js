@@ -91,7 +91,7 @@ class CenteredGrid extends React.Component {
 
   getCoordinates = (e) => {
     const { offsetX: posX, offsetY: posY } = e.nativeEvent;
-    console.log("Co-ordinates", posX, posY);
+    // console.log("Co-ordinates", posX, posY);
     const { mapping } = this.state;
     const pos = [posX, posY];
     mapping.push(pos);
@@ -123,7 +123,7 @@ class CenteredGrid extends React.Component {
     var ctx = c.getContext("2d");
     if (mapping.length >= 2) {
       let lc = mapping.slice(-2);
-      console.log(`(${lc[0]}),(${lc[1]})`)
+      // console.log(`(${lc[0]}),(${lc[1]})`)
       ctx.beginPath();
       ctx.moveTo(lc[0][0], lc[0][1]);
       ctx.lineTo(lc[1][0], lc[1][1]);
@@ -193,7 +193,7 @@ class CenteredGrid extends React.Component {
     const { classes } = this.props;
     const { showSnackBar, message } = this.state;
     const mappedRegions = this.mappedRegions();
-    console.log("mappedRegions", mappedRegions, this.refs);
+    // console.log("mappedRegions", mappedRegions, this.refs);
     const MAP = {
       name: "my-map",
       areas: mappedRegions
