@@ -87,7 +87,6 @@ class CenteredGrid extends React.Component {
 
     polygons: [],
     mapping: [],
-    selectedRegion: null,
   }
 
   getCoordinates = (e) => {
@@ -146,10 +145,6 @@ class CenteredGrid extends React.Component {
     this.forceUpdate();
   }
 
-  selectRegion = (e) => {
-    console.log("region", e);
-    this.setState({ selectedRegion: e.name })
-  }
 
   addEventListener = (e) => {
     const pos = {
@@ -196,6 +191,10 @@ class CenteredGrid extends React.Component {
 
   setRefernce = (node) => {
     this.canvas = node;
+  }
+
+  resetMapping = () => {
+    this.setState({ polygons: [], mapping: [], isMarking: true })
   }
 
   render() {
@@ -246,7 +245,7 @@ class CenteredGrid extends React.Component {
               <>
                 <canvas className={classes.canvasElement} ref={node => this.canvas = node} height="400" width="400" id="myCanvas" onMouseDown={this.getCoordinates} />
                 <img className={classes.image} id="myImg" src={this.state.url} alt='no' />
-                <div style={{ position: "absolute", top: "520px" }}>
+                <div style={{ position: "absolute", bottom: "10px" }}>
                   <button onClick={this.addPolygon}>Add Polygon</button>
                   <button onClick={this.removePreviousMarker}>Remove Previous Marker</button>
                   <button onClick={this.completeMarking}>Complete Mapping</button>
@@ -259,11 +258,11 @@ class CenteredGrid extends React.Component {
                   map={MAP}
                   height={400}
                   width={400}
-                  onClick={this.selectRegion}
                   setRefernce={this.setRefernce}
                 />
-                <div style={{ position: "absolute", top: "520px" }}>
+                <div style={{ position: "absolute", bottom: "10px" }}>
                   <button onClick={this.resetCanvas}>Reset color</button>
+                  <button onClick={this.resetMapping}>Reset Mapping</button>
                 </div>
               </>}
 
