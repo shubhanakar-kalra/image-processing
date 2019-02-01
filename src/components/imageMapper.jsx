@@ -10,7 +10,7 @@ export default class ImageMapper extends Component {
 			container: { position: 'relative' },
 			canvas: { ...absPos, pointerEvents: 'none', zIndex: 2 },
 			img: { ...absPos, zIndex: 1, userSelect: 'none' },
-			map: props.onClick && { cursor: 'pointer' } || undefined
+			map: (props.onClick && { cursor: 'pointer' }) || undefined
 		};
 		this.dropped = false;
 	}
@@ -69,7 +69,7 @@ export default class ImageMapper extends Component {
 
 	hoverOn(area, index, event) {
 		console.log("hoverOn", area, index, event)
-		const shape = event.target.getAttribute('shape');
+		// event.target.getAttribute('shape');
 		if (this.props.onMouseEnter)
 			this.props.onMouseEnter(area, index, event);
 	}
@@ -91,7 +91,7 @@ export default class ImageMapper extends Component {
 	onDragOver(area, index, event) {
 		console.log("on drag over")
 		event.preventDefault();
-		const shape = event.target.getAttribute('shape');
+		// event.target.getAttribute('shape');
 		event.dataTransfer.dropEffect = "move";
 		if (this.props.onDragOver)
 			this.props.onDragOver(area, index, event);
@@ -120,9 +120,8 @@ export default class ImageMapper extends Component {
 		const scaleCoords = coords => coords.map(coord => coord * scale)
 
 		return this.props.map.areas.map((area, index) => (
+			// eslint-disable-next-line jsx-a11y/alt-text
 			<area key={area._id || index} shape={area.shape} coords={scaleCoords(area.coords).join(',')}
-				// onMouseEnter={this.hoverOn.bind(this, area, index)}
-				// onMouseLeave={this.hoverOff.bind(this, area, index)}
 				onDrop={this.onDrop.bind(this, area, index)}
 				onDragOver={this.onDragOver.bind(this, area, index)}
 				onClick={this.click.bind(this, area, index)} href={area.href} />

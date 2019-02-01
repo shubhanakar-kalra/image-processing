@@ -145,21 +145,12 @@ class CenteredGrid extends React.Component {
     this.forceUpdate();
   }
 
-
-  addEventListener = (e) => {
-    const pos = {
-      x: e.clientX,
-      y: e.clientY
-    };
-  }
-
   resetCanvas = () => {
     let canvas = this.canvas;
     let ctx = canvas.getContext("2d");
     ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
-
 
   handleFileRead = (e) => {
     this.setState({ url: e.target.result });
@@ -238,7 +229,7 @@ class CenteredGrid extends React.Component {
               <input
                 type="file"
                 onChange={this.handleUploadImage}
-                accept=".jpeg"
+                accept="image/*"
               />
             </Button>}
             {this.state.url && this.state.isMarking &&
