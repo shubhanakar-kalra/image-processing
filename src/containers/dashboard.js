@@ -1,10 +1,12 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import ReactImageMapper from './../components/imageMapper';
+import RootRef from '@material-ui/core/RootRef';
 
-import Snackbar from '../components/snackBar';
+import ReactImageMapper from './../components/imageMapper';
+import Snackbar from '../components/SnackBar';
+import AppBar from '../components/Header';
+import ImageSelect from '../components/ImageSelect';
 
 const styles = theme => ({
   root: {
@@ -16,9 +18,7 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
   },
   image: {
-    position: 'absolute',
-    height: "400px",
-    width: "400px"
+    position: 'absolute'
   },
   canvasElement: {
     position: "realtive",
@@ -77,21 +77,23 @@ const colors = [
 
 class CenteredGrid extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.container = React.createRef();
+  }
+
   state = {
     url: null,
     message: '',
     showSnackBar: false,
     isMarking: false,
-    // polygons: [[[39, 167], [5, 259], [119, 257], [123, 168], [43, 169]],
-    // [[186, 121], [243, 188], [344, 185], [254, 109], [197, 108], [189, 119]]],
-
     polygons: [],
     mapping: [],
+    dimensions: null,
   }
 
   getCoordinates = (e) => {
     const { offsetX: posX, offsetY: posY } = e.nativeEvent;
-    // console.log("Co-ordinates", posX, posY);
     const { mapping } = this.state;
     const pos = [posX, posY];
     mapping.push(pos);
@@ -123,7 +125,6 @@ class CenteredGrid extends React.Component {
     var ctx = c.getContext("2d");
     if (mapping.length >= 2) {
       let lc = mapping.slice(-2);
-      // console.log(`(${lc[0]}),(${lc[1]})`)
       ctx.beginPath();
       ctx.moveTo(lc[0][0], lc[0][1]);
       ctx.lineTo(lc[1][0], lc[1][1]);
@@ -187,78 +188,89 @@ class CenteredGrid extends React.Component {
   resetMapping = () => {
     this.setState({ polygons: [], mapping: [], isMarking: true })
   }
+  
+  componentDidMount() {
+    this.setState({
+      dimensions: {
+        width: this.container.current.offsetWidth,
+        height: this.container.current.offsetHeight,
+      },
+    });
+  }
 
-  render() {
-    console.log("canvas", this.canvas);
+  renderCanvas = () => {
     const { classes } = this.props;
-    const { showSnackBar, message } = this.state;
+    const { url, isMarking, dimensions } = this.state;
     const mappedRegions = this.mappedRegions();
-    // console.log("mappedRegions", mappedRegions, this.refs);
-    const MAP = {
+    const map = {
       name: "my-map",
       areas: mappedRegions
     }
+    if (isMarking) {
+      return (
+        <React.Fragment>
+          <canvas className={classes.canvasElement} ref={node => this.canvas = node} height={dimensions.height} width={dimensions.width} id="myCanvas" onMouseDown={this.getCoordinates} />
+           <img className={classes.image} id="myImg" src={this.state.url} height={dimensions.height} width={dimensions.width} alt='no' />
+        </React.Fragment>
+      )
+    }
     return (
-      <div className={classes.root}>
-        <Grid container spacing={24}>
-          <Grid item xs={12}>
-            {/* <PrimarySearchAppBar /> */}
-          </Grid>
-          <Grid item xs={4}>
-            <div style={{boxSizing: 'border-box', padding: '15px', display: 'block'}}>
-              <ul className={classes.colorList}>
-                {colors.map(val => {
-                  return (
-                    <>
+      <React.Fragment>
+        <ReactImageMapper
+          src={url}
+          map={map}
+          height={dimensions.height}
+          width={dimensions.width}
+          setRefernce={this.setRefernce}
+        />
+        <div style={{ position: "absolute", bottom: "10px" }}>
+          <button onClick={this.resetCanvas}>Reset color</button>
+          <button onClick={this.resetMapping}>Reset Mapping</button>
+        </div>
+      </React.Fragment>
+    )
+  }
+
+  render() {
+    const { classes } = this.props;
+    const { showSnackBar, message, dimensions, url } = this.state;
+    return (
+      <div>
+        <AppBar
+          showButton={this.state.url && this.state.isMarking}
+          addMarker={this.addPolygon}
+          removeMarker={this.removePreviousMarker}
+          completeMarking={this.completeMarking}
+        />
+        <div className={classes.root}>
+          <Grid container spacing={0}>
+            <Grid container item xs={3}>
+              <div style={{boxSizing: 'border-box', padding: '15px', display: 'block'}}>
+                <ul className={classes.colorList}>
+                  {colors.map(val => (
+                    <React.Fragment>
                       <li draggable={true}
                         id={val.color}
                         className={classes.colorListItem}
                         style={{ backgroundColor: val.color, width: "100px" }}
                         onDragStart={(e) => this.onDragEvent(e)}
                       >
-                      <label>{val.name}</label>
-                      <div className={classes.colorText}>{val.color}</div></li>
-                    </>
-                  )
-                })}
-              </ul>
-            </div>
+                        <label>{val.name}</label>
+                        <div className={classes.colorText}>{val.color}</div>
+                      </li>
+                    </React.Fragment>
+                  ))}
+                </ul>
+              </div>
+            </Grid>
+            <RootRef rootRef={this.container}>
+              <Grid container item xs={9} alignItems="center" justify="center">
+                  {!url && <ImageSelect handleUploadImage={this.handleUploadImage} />}
+                  {dimensions && url && this.renderCanvas()}
+              </Grid>
+            </RootRef>
           </Grid>
-          <Grid container item xs={8} alignItems="center" justify="center">
-            {!this.state.url && <Button variant="contained" color="default" className={classes.button}>
-              <input
-                type="file"
-                onChange={this.handleUploadImage}
-                accept="image/*"
-              />
-            </Button>}
-            {this.state.url && this.state.isMarking &&
-              <>
-                <canvas className={classes.canvasElement} ref={node => this.canvas = node} height="400" width="400" id="myCanvas" onMouseDown={this.getCoordinates} />
-                <img className={classes.image} id="myImg" src={this.state.url} alt='no' />
-                <div style={{ position: "absolute", bottom: "10px" }}>
-                  <button onClick={this.addPolygon}>Add Polygon</button>
-                  <button onClick={this.removePreviousMarker}>Remove Previous Marker</button>
-                  <button onClick={this.completeMarking}>Complete Mapping</button>
-                </div>
-              </>}
-            {this.state.url && !this.state.isMarking &&
-              <>
-                <ReactImageMapper
-                  src={this.state.url}
-                  map={MAP}
-                  height={400}
-                  width={400}
-                  setRefernce={this.setRefernce}
-                />
-                <div style={{ position: "absolute", bottom: "10px" }}>
-                  <button onClick={this.resetCanvas}>Reset color</button>
-                  <button onClick={this.resetMapping}>Reset Mapping</button>
-                </div>
-              </>}
-
-          </Grid>
-        </Grid>
+        </div>
         <Snackbar open={showSnackBar} message={message} handleClose={this.handleClose} />
       </div>
     );
