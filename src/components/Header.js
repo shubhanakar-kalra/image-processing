@@ -45,7 +45,7 @@ class PrimarySearchAppBar extends React.Component {
   }
 
   render() {
-    const { classes, showButton, addPolygon, removePreviousMarker, completeMarking } = this.props;
+    const { classes, showButton, addPolygon, removePreviousMarker, completeMarking, resetCanvas, resetMapping, isMarking } = this.props;
 
     return (
       <div className={classes.root}>
@@ -56,9 +56,11 @@ class PrimarySearchAppBar extends React.Component {
             </Typography>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-            {showButton && this.renderButton("Map", addPolygon)}
-            {showButton && this.renderButton("Undo Map", removePreviousMarker)}
-            {showButton && this.renderButton("visualize", completeMarking)}
+            {showButton && isMarking && this.renderButton("Map", addPolygon)}
+            {showButton && isMarking && this.renderButton("Undo Map", removePreviousMarker)}
+            {showButton && isMarking && this.renderButton("visualize", completeMarking)}
+            {showButton && !isMarking && this.renderButton("Reset color", resetCanvas)}
+            {showButton && !isMarking && this.renderButton("Reset Mapping", resetMapping)}
             </div>
           </Toolbar>
         </AppBar>

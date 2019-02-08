@@ -113,6 +113,7 @@ export default class ImageMapper extends Component {
 	}
 
 	renderAreas() {
+		console.log("render areas", this.props)
 		const { imgWidth, width } = this.props
 		// calculate scale based on current 'width' and the original 'imgWidth'
 		const scale = width && imgWidth && imgWidth > 0 ? width / imgWidth : 1

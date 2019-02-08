@@ -121,15 +121,30 @@ class CenteredGrid extends React.Component {
   }
 
   drawLine(mapping) {
-    var c = document.getElementById("myCanvas");
+    var c = this.canvas;
     var ctx = c.getContext("2d");
+    ctx.fillStyle = "#FFFFFF";
+    ctx.strokeStyle = "#FFFFFF";
     if (mapping.length >= 2) {
+      if (mapping.length == 2) {
+        this.drawPoint(ctx, mapping[0]);
+      }
       let lc = mapping.slice(-2);
       ctx.beginPath();
       ctx.moveTo(lc[0][0], lc[0][1]);
       ctx.lineTo(lc[1][0], lc[1][1]);
       ctx.stroke();
+      this.drawPoint(ctx, lc[1]);
     }
+  }
+
+  drawPoint(ctx, point) {
+    const x = point[0];
+    const y = point[1];
+    const pointSize = 3;
+    ctx.beginPath(); //Start path
+    ctx.arc(x, y, pointSize, 0, Math.PI * 2, true); // Draw a point using the arc function of the canvas with a point structure.
+    ctx.fill(); 
   }
 
   mappedRegions = () => {
@@ -237,10 +252,13 @@ class CenteredGrid extends React.Component {
     return (
       <div>
         <AppBar
-          showButton={this.state.url && this.state.isMarking}
-          addMarker={this.addPolygon}
+          showButton={this.state.url}
+          isMarking={this.state.isMarking}
+          addPolygon={this.addPolygon}
           removeMarker={this.removePreviousMarker}
           completeMarking={this.completeMarking}
+          resetCanvas={this.resetCanvas}
+          resetMapping={this.resetMapping}
         />
         <div className={classes.root}>
           <Grid container spacing={0}>
