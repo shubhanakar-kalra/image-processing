@@ -1,8 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import RootRef from '@material-ui/core/RootRef';
-
+import classNames from 'classnames';
 import ReactImageMapper from './../components/imageMapper';
 import Snackbar from '../components/SnackBar';
 import AppBar from '../components/Header';
@@ -18,11 +17,16 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
   },
   image: {
-    position: 'absolute'
+    position: 'absolute; top:0px; left:0px'
   },
   canvasElement: {
-    position: "realtive",
+    position: 'absolute; top:0px; left:0px',
     zIndex: 2
+  },
+  containerWrapper: {
+    width: '100%',
+    height: 'calc(100vh - 64px) !important',
+    position: 'relative'
   },
   colorList: {
     marginTop: '10px',
@@ -30,7 +34,11 @@ const styles = theme => ({
     overflowX: 'hidden',
     paddingRight: '13px',
     listStyle: 'none'
-
+  },
+  selectImage: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   colorListItem: {
     width: '31%',
@@ -79,24 +87,29 @@ class CenteredGrid extends React.Component {
 
   constructor(props) {
     super(props);
-    this.container = React.createRef();
+    this.state = {
+      url: null,
+      message: '',
+      showSnackBar: false,
+      isMarking: false,
+      polygons: [],
+      mapping: [],
+      dimensions: null,
+    };
   }
 
-  state = {
-    url: null,
-    message: '',
-    showSnackBar: false,
-    isMarking: false,
-    polygons: [],
-    mapping: [],
-    dimensions: null,
+  componentDidMount() {
+    this.setState({ dimensions: { height: this.containerWrapper.offsetHeight, width: this.containerWrapper.offsetWidth } });
   }
 
   getCoordinates = (e) => {
-    const { offsetX: posX, offsetY: posY } = e.nativeEvent;
+    const c = this.canvas;
+    const ctx = c.getContext('2d');
+    let { layerX: posX, layerY: posY} = e.nativeEvent;
     const { mapping } = this.state;
     const pos = [posX, posY];
     mapping.push(pos);
+    this.drawPoint(ctx, { x: posX, y: posY });
     this.drawLine(mapping);
     this.setState({ mapping })
   }
@@ -121,30 +134,24 @@ class CenteredGrid extends React.Component {
   }
 
   drawLine(mapping) {
-    var c = this.canvas;
-    var ctx = c.getContext("2d");
-    ctx.fillStyle = "#FFFFFF";
-    ctx.strokeStyle = "#FFFFFF";
     if (mapping.length >= 2) {
-      if (mapping.length == 2) {
-        this.drawPoint(ctx, mapping[0]);
-      }
-      let lc = mapping.slice(-2);
+      const c = this.canvas;
+      const ctx = c.getContext("2d");
+      const lc = mapping.slice(-2);
       ctx.beginPath();
       ctx.moveTo(lc[0][0], lc[0][1]);
       ctx.lineTo(lc[1][0], lc[1][1]);
       ctx.stroke();
-      this.drawPoint(ctx, lc[1]);
     }
   }
-
-  drawPoint(ctx, point) {
-    const x = point[0];
-    const y = point[1];
+  
+  drawPoint(ctx, { x, y }) {
     const pointSize = 3;
-    ctx.beginPath(); //Start path
+    ctx.fillStyle = "#FFFFFF";
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.beginPath();
     ctx.arc(x, y, pointSize, 0, Math.PI * 2, true); // Draw a point using the arc function of the canvas with a point structure.
-    ctx.fill(); 
+    ctx.fill();
   }
 
   mappedRegions = () => {
@@ -204,65 +211,53 @@ class CenteredGrid extends React.Component {
     this.setState({ polygons: [], mapping: [], isMarking: true })
   }
   
-  componentDidMount() {
-    this.setState({
-      dimensions: {
-        width: this.container.current.offsetWidth,
-        height: this.container.current.offsetHeight,
-      },
-    });
-  }
-
   renderCanvas = () => {
     const { classes } = this.props;
-    const { url, isMarking, dimensions } = this.state;
+    const { url, isMarking, dimensions: { height, width } } = this.state;
     const mappedRegions = this.mappedRegions();
     const map = {
       name: "my-map",
       areas: mappedRegions
-    }
-    if (isMarking) {
-      return (
+    };
+    
+    return isMarking ?
+      (
         <React.Fragment>
-          <canvas className={classes.canvasElement} ref={node => this.canvas = node} height={dimensions.height} width={dimensions.width} id="myCanvas" onMouseDown={this.getCoordinates} />
-           <img className={classes.image} id="myImg" src={this.state.url} height={dimensions.height} width={dimensions.width} alt='no' />
+          <canvas className={classes.canvasElement} height={height} width={width} ref={el=> this.canvas = el} onMouseDown={this.getCoordinates} />
+          <img className={classNames(classes.image, classes.myImg)} height={height} width={width} src={this.state.url} alt='no' />
         </React.Fragment>
-      )
-    }
-    return (
-      <React.Fragment>
-        <ReactImageMapper
-          src={url}
-          map={map}
-          height={dimensions.height}
-          width={dimensions.width}
-          setRefernce={this.setRefernce}
-        />
-        <div style={{ position: "absolute", bottom: "10px" }}>
-          <button onClick={this.resetCanvas}>Reset color</button>
-          <button onClick={this.resetMapping}>Reset Mapping</button>
-        </div>
-      </React.Fragment>
-    )
+      ) : (
+        <React.Fragment>
+          <ReactImageMapper
+            src={url}
+            map={map}
+            height={height}
+            width={width}
+            setRefernce={this.setRefernce}
+            />
+        </React.Fragment>
+      );
   }
-
+  
   render() {
     const { classes } = this.props;
-    const { showSnackBar, message, dimensions, url } = this.state;
+    const { showSnackBar, message, url, dimensions } = this.state;
     return (
       <div>
-        <AppBar
-          showButton={this.state.url}
-          isMarking={this.state.isMarking}
-          addPolygon={this.addPolygon}
-          removeMarker={this.removePreviousMarker}
-          completeMarking={this.completeMarking}
-          resetCanvas={this.resetCanvas}
-          resetMapping={this.resetMapping}
-        />
-        <div className={classes.root}>
-          <Grid container spacing={0}>
-            <Grid container item xs={3}>
+        <div>
+          <Grid container zeroMinWidth className={classes.root}>
+            <Grid item xs={12}>
+              <AppBar
+                showButton={this.state.url}
+                isMarking={this.state.isMarking}
+                addPolygon={this.addPolygon}
+                removeMarker={this.removePreviousMarker}
+                completeMarking={this.completeMarking}
+                resetCanvas={this.resetCanvas}
+                resetMapping={this.resetMapping}
+              />
+            </Grid>
+            <Grid item xs={3}>
               <div style={{boxSizing: 'border-box', padding: '15px', display: 'block'}}>
                 <ul className={classes.colorList}>
                   {colors.map(val => (
@@ -272,7 +267,7 @@ class CenteredGrid extends React.Component {
                         className={classes.colorListItem}
                         style={{ backgroundColor: val.color, width: "100px" }}
                         onDragStart={(e) => this.onDragEvent(e)}
-                      >
+                        >
                         <label>{val.name}</label>
                         <div className={classes.colorText}>{val.color}</div>
                       </li>
@@ -281,12 +276,12 @@ class CenteredGrid extends React.Component {
                 </ul>
               </div>
             </Grid>
-            <RootRef rootRef={this.container}>
-              <Grid container item xs={9} alignItems="center" justify="center">
-                  {!url && <ImageSelect handleUploadImage={this.handleUploadImage} />}
-                  {dimensions && url && this.renderCanvas()}
-              </Grid>
-            </RootRef>
+            <Grid item xs={9} className={classes.selectImage}>
+              <div className={classes.containerWrapper} ref={el => this.containerWrapper = el}>
+                {!url && <ImageSelect handleUploadImage={this.handleUploadImage} />}
+                {dimensions && url && this.renderCanvas()}
+              </div>
+            </Grid>
           </Grid>
         </div>
         <Snackbar open={showSnackBar} message={message} handleClose={this.handleClose} />
