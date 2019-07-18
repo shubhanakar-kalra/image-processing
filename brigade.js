@@ -1,5 +1,5 @@
 const { events }  = require("brigadier")
 
 events.on("push", () => {
-  console.log("==> handling an 'push' event hello to tdajkdnald")
+  console.log("==> handling an 'push' event hello to bald")
 })
