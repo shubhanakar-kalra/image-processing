@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: CongifMap
+metadata:
+  name: config-env
+spec:
+  env:
+  - name: USERNAME
+    value: "user1"
+    

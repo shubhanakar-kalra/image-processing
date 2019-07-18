@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: node-deployment
+  labels:
+    app: node
+    appl2: improc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node
+      appl2: improc
+  template:
+    metadata:
+      labels:
+        appl2: improc
+        app: node
+    spec:
+      containers:
+      - name: imageprocess
+        image: shaxxz13/imageprocess
+        ports:
+        - containerPort: 5000

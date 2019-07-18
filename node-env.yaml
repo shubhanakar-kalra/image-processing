@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: shubu
+spec: 
+  containers:
+  - name: imageprocess
+    image: mongo
+    env:
+    - name: GREETING
+      value: "Hello World"
+    - name: SECRET_USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: my-secret
+          key: username
+

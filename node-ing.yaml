@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: kalra.k8.io
+    http:
+      paths:
+      - path: /foo
+        backend:
+          serviceName: my-service
+          servicePort: 80
+      - path: /bar
+        backend:
+          serviceName: hello-world-svc
+          servicePort: 8088

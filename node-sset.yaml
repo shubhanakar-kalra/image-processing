@@ -1,0 +1,21 @@
+#statefulSet 
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: 
+  name: stateful-set
+spec:
+  serviceName: my-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+      - name: node
+        image: mongo
+        ports:
+        - containerPort: 27017    
