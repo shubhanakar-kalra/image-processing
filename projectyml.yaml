@@ -1,0 +1,6 @@
+project: "shubhanakar-kalra/image-processing"
+repository: github.com/shubhanakar-kalra/image-processing
+cloneURL: https://github.com/shubhanakar-kalra/image-processing.git
+github:
+  token: "dfa0dfb0f657b0eacab77535d671c2eb650e424a"
+sharedSecret: "mysecretkey"
