@@ -15,7 +15,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "eslint": "npx eslint --ext .js ./src/components/*.js"
+    "eslint": "npx eslint --ext .js ./src/*.js"
   },
   "eslintConfig": {
     "extends": "react-app"
