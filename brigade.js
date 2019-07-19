@@ -9,7 +9,7 @@ events.on("push", () => {
     "cd src/",
     "npm i",
     //"npm run eslint"
-    "npx eslint --ext .js ./src/*.js"
+    //"npx eslint --ext .js ./src/*.js"
   ]
   job.run()
 })
