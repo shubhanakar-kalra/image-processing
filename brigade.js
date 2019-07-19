@@ -8,7 +8,8 @@ events.on("push", () => {
   job.tasks = [
     "cd src/",
     "npm i",
-    "npm run eslint"
+    //"npm run eslint"
+    "npx eslint --ext .js ./src/*.js"
   ]
   job.run()
 })
