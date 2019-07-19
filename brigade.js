@@ -3,11 +3,11 @@ const { events, Job }  = require("brigadier")
 events.on("push", () => {
   console.log("==> handling an 'push' event hello to bald")
 
-  var job = new Job("lint-check", "alpine:3.7")
+  var job = new Job("lint-check", "node:8")
 
   job.tasks = [
     "npm i ",
-    "eslint --init"
+    "eslint --fix"
   ]
   job.run()
 })
