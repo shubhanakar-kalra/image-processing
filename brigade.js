@@ -3,7 +3,7 @@ const { events, Job }  = require("brigadier")
 events.on("push", () => {
   console.log("==> handling an 'push' event hello to bald")
 
-  var job = new Job("lint-check", "current-alpine")
+  var job = new Job("lint-check", "alpine:3.7")
 
   job.tasks = [
     "npm i ",
