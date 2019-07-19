@@ -9,4 +9,5 @@ events.on("push", () => {
     "npm i",
     "echo lint checked"
   ]
+  job.run()
 })
