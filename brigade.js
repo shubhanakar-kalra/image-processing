@@ -6,6 +6,7 @@ events.on("push", () => {
   var job = new Job("lint-check", "node:8")
 
   job.tasks = [
+    "cd src/",
     "eslint"
   ]
   job.run()
