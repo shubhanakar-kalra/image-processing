@@ -12,4 +12,5 @@ events.on("push", () => {
     //"npx eslint --ext .js ./src/*.js"
   ]
   job.run()
+  console.log("Job successfuly ran")
 })
