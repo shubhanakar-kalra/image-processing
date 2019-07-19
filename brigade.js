@@ -7,7 +7,7 @@ events.on("push", () => {
 
   job.tasks = [
     "npm i ",
-    "eslint --fix"
+    "eslint"
   ]
   job.run()
 })
