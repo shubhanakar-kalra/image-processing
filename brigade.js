@@ -6,7 +6,7 @@ events.on("push", () => {
   var job = new Job("lint-check", "alpine:3.4")
 
   job.tasks = [
-    "npm i",
+    "npm i eslint",
     "eslint --fix ."
   ]
   job.run()
