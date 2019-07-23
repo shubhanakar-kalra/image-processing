@@ -1,4 +1,4 @@
-const { events, Job}  = require("brigadier")
+const { events, Job }  = require("brigadier")
 
 events.on("push", () => {
   console.log("==> handling an 'push' event hello to bald")
@@ -15,7 +15,7 @@ events.on("push", () => {
 
   job2.tasks = [
     "workdir /app",
-    "npm i"
+    "ls -lart"
   ]
  job2.run();
 
