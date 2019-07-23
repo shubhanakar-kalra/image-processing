@@ -11,7 +11,7 @@ events.on("push", () => {
     //  ]
  
   
-  let job2 = new Job("Dockerization", "docker:stable-dind")
+  let job2 = new Job("dockerization", "docker:stable-dind")
 
   job2.tasks = [
     "workdir /app",
