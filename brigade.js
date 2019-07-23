@@ -19,7 +19,7 @@ events.on("push", () => {
     "npm i"
   ]
   group.add(job2);
-  group.runEach([job],[job2]);
+  group.runEach([job]);
   //job2.run()
 
 })
