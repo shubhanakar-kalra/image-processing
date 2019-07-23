@@ -7,10 +7,14 @@ events.on("push", () => {
 
   job.tasks = [
     "cd src/",
-    "npm i",
-    "docker pull ubuntu"
-
-  ]
+    "npm i"
+      ]
   job.run()
   console.log("Job successfuly ran")
+  var job2 = new Job("Dockerization", "docker:18.09")
+
+  job2.tasks = [
+    "workdir /app",
+    "npm i"
+  ]
 })
