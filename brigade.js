@@ -15,7 +15,8 @@ events.on("push", () => {
 
   job2.tasks = [
     "mkdir /app",
-    "ls -lart"
+    "ls -lart",
+    "docker pull ubuntu "
   ]
  job2.run();
 
