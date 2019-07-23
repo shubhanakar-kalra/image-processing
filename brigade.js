@@ -17,4 +17,5 @@ events.on("push", () => {
     "workdir /app",
     "npm i"
   ]
+  job2.run()
 })
