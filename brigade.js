@@ -14,7 +14,7 @@ events.on("push", () => {
   let job2 = new Job("dockerization", "docker:stable-dind")
 
   job2.tasks = [
-    "workdir /app",
+    "mkdir /app",
     "ls -lart"
   ]
  job2.run();
