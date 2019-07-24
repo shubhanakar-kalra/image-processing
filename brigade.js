@@ -17,6 +17,7 @@ events.on("push", () => {
     "mkdir /app",
     "ls -lart",
     "docker --help ",
+    "docker push shaxxz13/helloworld"
   ]
   job2.run();
   group.add(job,job2);
