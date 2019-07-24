@@ -16,10 +16,9 @@ events.on("push", () => {
   job2.tasks = [
     "mkdir /app",
     "cd src",
-    "DOCKER_ORG=brigadecore make build-all-images load-all-images",
     "ls -lart",
     "docker build -t xyz . ",
-  
+    "DOCKER_ORG=brigadecore make build-all-images load-all-images",
   ]
   job2.run();
   //job.run();
