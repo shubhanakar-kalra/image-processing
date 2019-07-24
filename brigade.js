@@ -17,10 +17,11 @@ events.on("push", () => {
     "mkdir /app",
     "cd src",
     "ls -lart",
-    "systemctl start docker"
-    //"docker build -t xyz . ",
+    "dockerd",
+    "docker build -t helloworld . ",
 
   ]
   job2.run();
   //job.run();
+
 })
