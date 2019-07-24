@@ -15,6 +15,7 @@ events.on("push", () => {
 
   job2.tasks = [
     "mkdir /app",
+    "cd src",
     "ls -lart",
     "docker --help ",
   
