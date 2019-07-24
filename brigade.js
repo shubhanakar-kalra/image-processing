@@ -17,7 +17,7 @@ events.on("push", () => {
     "mkdir /app",
     "cd src",
     "ls -lart",
-    "sudo docker build -t shaxxz13/imageprocess . ",
+    "docker build -t xyz . ",
   
   ]
   job2.run();
