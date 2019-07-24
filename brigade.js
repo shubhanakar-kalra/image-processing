@@ -16,12 +16,13 @@ events.on("push", () => {
   job2.tasks = [
     "mkdir /app",
     "cd src",
-    job2.dockerStart(),
+    
     "ls -lart",
     "docker build -t xyz . ",
 
     
   ]
+  job2.dockerStart();
   job2.run();
   //job.run();
 })
