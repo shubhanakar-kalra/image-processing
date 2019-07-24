@@ -12,6 +12,9 @@ events.on("push", () => {
  
   
   let job2 = new Job("dockerization", "docker:stable-dind")
+  job2.env = {
+    "DOCKER_DRIVER": "overlay"
+  }
   job2.dockerStart(),
   job2.dockerPackage(),
   job2.tasks = [
