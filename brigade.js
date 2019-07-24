@@ -18,7 +18,7 @@ events.on("push", () => {
     "mkdir /app",
     "cd src",
     "ls -lart",
-    "dockerd",
+    "dockerd-entrypoint.sh &",
     "docker build shaxxz13/imageprocess:v2 . ",
 
   ]
