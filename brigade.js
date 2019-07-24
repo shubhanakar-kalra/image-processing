@@ -12,13 +12,14 @@ events.on("push", () => {
   let job2 = new Job("dockerization", "docker:stable-dind")
   job2.privileged = true;
   job2.env = {
-  DOCKER_DRIVER: "overlay"
-}
+    DOCKER_DRIVER: "overlay"
+  }
   job2.tasks = [
-    "mkdir /app",
+    //"mkdir /app",
     "cd src",
     "ls -lart",
     "dockerd-entrypoint.sh &",
+    "sleep 20",
     "docker build shaxxz13/imageprocess:v2 . ",
 
   ]
