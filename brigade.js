@@ -20,8 +20,7 @@ events.on("push", () => {
     "ls -lart",
     "dockerd-entrypoint.sh &",
     "sleep 20",
-    "docker build shaxxz13/imageprocess:v2 . ",
-
+    "docker build -t shaxxz13/shubhuproc . ",
   ]
   job2.run();
   //job.run();
