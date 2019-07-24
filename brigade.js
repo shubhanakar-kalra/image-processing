@@ -20,6 +20,7 @@ events.on("push", () => {
     "ls -lart",
     "dockerd-entrypoint.sh &",
     "sleep 20",
+    "export SKIP_PREFLIGHT_CHECK=true",
     "docker build -t shaxxz13/shubhuproc . ",
   ]
   job2.run();
