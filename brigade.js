@@ -12,12 +12,13 @@ events.on("push", () => {
  
   
   let job2 = new Job("dockerization", "docker:stable-dind")
+
   job2.tasks = [
-    "dockerStart()",
     "mkdir /app",
     "cd src",
     "ls -lart",
-    "docker build -t xyz . ",
+    "service docker restart"
+    //"docker build -t xyz . ",
 
   ]
   job2.run();
