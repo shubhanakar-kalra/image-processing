@@ -1,8 +1,8 @@
-const { events, Job, Group }  = require("brigadier")
+const { events, Job }  = require("brigadier")
 
 events.on("push", () => {
   console.log("==> handling an 'push' event hello to bald")
-  let group = new Group();
+ // let group = new Group();
  // let job = new Job("lint-check", "node:8")
 
   //job.tasks = [
@@ -15,14 +15,13 @@ events.on("push", () => {
 
   job2.tasks = [
     "mkdir /app",
+    job2.dockerStart(),
+    job2.dockerPackage(),
     "cd src",
-    
     "ls -lart",
     "docker build -t xyz . ",
 
-    
   ]
-  job2.dockerStart();
   job2.run();
   //job.run();
 })
