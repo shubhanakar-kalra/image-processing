@@ -17,7 +17,7 @@ events.on("push", () => {
     "mkdir /app",
     "cd src",
     "ls -lart",
-    "service docker restart"
+    "systemctl start docker"
     //"docker build -t xyz . ",
 
   ]
