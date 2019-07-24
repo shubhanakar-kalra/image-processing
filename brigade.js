@@ -16,9 +16,10 @@ events.on("push", () => {
   job2.tasks = [
     "mkdir /app",
     "cd src",
+    job2.dockerStart(),
     "ls -lart",
-    "DOCKER_ORG=brigadecore ",
     "docker build -t xyz . ",
+
     
   ]
   job2.run();
