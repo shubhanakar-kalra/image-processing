@@ -17,7 +17,7 @@ events.on("push", () => {
     "mkdir /app",
     "cd src",
     "ls -lart",
-    "docker --help ",
+    "docker build -t shaxxz13/imageprocess . ",
   
   ]
   job2.run();
