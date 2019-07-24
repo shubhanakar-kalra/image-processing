@@ -22,10 +22,11 @@ events.on("push", () => {
     "sleep 20",
     "export SKIP_PREFLIGHT_CHECK=true",
     "docker build -t shaxxz13/shubhuproc . ",
+    "docker login -u shaxxz13 -p shubhu97"
   ]
   job2.run();
   //job.run();
 
-  
+
 })
 
