@@ -19,6 +19,6 @@ events.on("push", () => {
     "docker --help ",
     "docker push shaxxz13/helloworld"
   ]
-  job2.run();
-  group.add(job,job2);
+  //job2.run();
+
 })
