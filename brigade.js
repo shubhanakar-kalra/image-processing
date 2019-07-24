@@ -12,11 +12,10 @@ events.on("push", () => {
  
   
   let job2 = new Job("dockerization", "docker:stable-dind")
-
+  job2.dockerStart(),
+  job2.dockerPackage(),
   job2.tasks = [
     "mkdir /app",
-    job2.dockerStart(),
-    job2.dockerPackage(),
     "cd src",
     "ls -lart",
     "docker build -t xyz . ",
