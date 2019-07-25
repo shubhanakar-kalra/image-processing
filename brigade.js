@@ -22,7 +22,8 @@ events.on("push", () => {
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
     "docker build -t shaxxz13/shubhuproc . ",
-    "docker login -u shaxxz13 -p shubhu9797"
+    "docker login -u shaxxz13 -p shubhu9797",
+    "docker push shaxxz13/shubhuproc:v2"
   ]
   //job.run().then(() => {
     job2.run()
