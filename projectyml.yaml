@@ -2,5 +2,5 @@ project: "imgproc1"
 repository: github.com/shubhanakar-kalra/image-processing
 cloneURL: https://github.com/shubhanakar-kalra/image-processing.git
 github:
-  token: "dfa0dfb0f657b0eacab77535d671c2eb650e424a"
+  token: "c3a7b3d0c79989293ed27e29d03aae7b0823e024"
 sharedSecret: "mysecretkey"
