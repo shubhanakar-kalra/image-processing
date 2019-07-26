@@ -26,9 +26,6 @@ events.on("push", () => {
     "docker run google/cloud-sdk:latest gcloud version",
     "gcloud auth activate-service-account --key-file=keys.json"
 
-
-
-
    // "docker login -u shaxxz13 -p shubhu9797",
     //"docker push shaxxz13/shubhuxx"
   ]
