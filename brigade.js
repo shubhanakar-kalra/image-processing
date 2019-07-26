@@ -21,14 +21,26 @@ events.on("push", () => {
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
-    "docker build -t shaxxz13/shubhuxx . ",
+    //"docker build -t shaxxz13/shubhuxx . ",
+    "docker pull google/cloud-sdk:latest",
+    "docker run -ti  google/cloud-sdk:latest gcloud version",
     "gcloud auth activate-service-account --key-file=keys.json"
+
+
+
+
    // "docker login -u shaxxz13 -p shubhu9797",
     //"docker push shaxxz13/shubhuxx"
   ]
   //job.run().then(() => {
     job2.run()
   //})
+
+  
+
+
+
+
 })
 
 
