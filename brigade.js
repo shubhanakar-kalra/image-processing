@@ -15,15 +15,16 @@ events.on("push", () => {
     DOCKER_DRIVER: "overlay"
   }
   job2.tasks = [
-    //"mkdir /app",
+
     "cd src",
     "ls -lart",
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
     "docker build -t shaxxz13/shubhuxx . ",
-    "docker login -u shaxxz13 -p shubhu9797",
-    "docker push shaxxz13/shubhuxx"
+    "gcloud auth activate-service-account --key-file=keys.json"
+   // "docker login -u shaxxz13 -p shubhu9797",
+    //"docker push shaxxz13/shubhuxx"
   ]
   //job.run().then(() => {
     job2.run()
