@@ -14,7 +14,7 @@ events.on("push", () => {
   job2.env = {
     DOCKER_DRIVER: "overlay"
   }
-  
+
   job2.tasks = [
 
     "cd src",
@@ -32,6 +32,7 @@ events.on("push", () => {
   //job.run().then(() => {
     job2.run()
   //})
+  
 //hello
   
 
