@@ -23,14 +23,22 @@ events.on("push", () => {
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
-    "apk add curl",
-    "curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz",
-    "mkdir -p /usr/local/gcloud",
+    "VERSION=1.5.0",
+    "OS=linux",
+    "ARCH=amd64",
+    "curl -fsSL `https://github.com/GoogleCloudPlatform/docker-credential-gcr/releases/download/v${VERSION}/docker-credential-gcr_${OS}_${ARCH}-${VERSION}.tar.gz` \
+    | tar xz --to-stdout ./docker-credential-gcr \
+    > /usr/bin/docker-credential-gcr && chmod +x /usr/bin/docker-credential-gcr",
+    // "apk add curl",
+    // "curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz",
+    // "mkdir -p /usr/local/gcloud",
+    "docker-credential-gcr gcr-login > log.txt",
     "echo ======================================",
-    "tar -C /usr/local/gcloud -xvf /tmp/google-cloud-sdk.tar.gz",
-    "echo ++++++++++++++++++++++++++++++++++++++++++",
-    "/usr/local/gcloud/google-cloud-sdk/install.sh",
-    "/usr/local/gcloud/google-cloud-sdk/bin/gcloud init"
+    "cat log.txt"
+    // "tar -C /usr/local/gcloud -xvf /tmp/google-cloud-sdk.tar.gz",
+    // "echo ++++++++++++++++++++++++++++++++++++++++++",
+    // "/usr/local/gcloud/google-cloud-sdk/install.sh",
+    // "/usr/local/gcloud/google-cloud-sdk/bin/gcloud init"
 
 
     // "cat keys.json | docker login -u _json_key --password-stdin https://gcr.io",
