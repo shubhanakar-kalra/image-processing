@@ -24,12 +24,13 @@ events.on("push", () => {
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
     "apk add curl",
-    "curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz"
-
-
-
-
-
+    "curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz",
+    "mkdir -p /usr/local/gcloud",
+    "echo ======================================",
+    "tar -C /usr/local/gcloud -xvf /tmp/google-cloud-sdk.tar.gz",
+    "echo ++++++++++++++++++++++++++++++++++++++++++",
+    "/usr/local/gcloud/google-cloud-sdk/install.sh",
+    "/usr/local/gcloud/google-cloud-sdk/bin/gcloud init"
 
 
     // "cat keys.json | docker login -u _json_key --password-stdin https://gcr.io",
