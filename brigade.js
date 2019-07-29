@@ -32,9 +32,7 @@ events.on("push", () => {
     // "apk add curl",
     // "curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz",
     // "mkdir -p /usr/local/gcloud",
-    "docker-credential-gcr gcr-login > log.txt",
-    "echo ======================================",
-    "cat log.txt"
+    "gcloud init"
     // "tar -C /usr/local/gcloud -xvf /tmp/google-cloud-sdk.tar.gz",
     // "echo ++++++++++++++++++++++++++++++++++++++++++",
     // "/usr/local/gcloud/google-cloud-sdk/install.sh",
