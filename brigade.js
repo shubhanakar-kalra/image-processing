@@ -24,10 +24,11 @@ events.on("push", () => {
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
     "wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz",
-    "tar zxvf google-cloud-sdk.tar.gz",
+    "tar zxvf google-cloud-sdk.tar.gz && ./google-cloud-sdk/install.sh --usage-reporting=false --path-update=true",
     "google-cloud-sdk/bin/gcloud --quiet components update",
-    "ls -lart"
-    // && ./google-cloud-sdk/install.sh --usage-reporting=false --path-update=true",
+    "google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ./keys.json",
+    "ls -lart",
+
     //"docker build -t shaxxz13/shubhuxx . ",
     //"docker pull google/cloud-sdk:latest",
     //"docker run google/cloud-sdk:latest gcloud version",
