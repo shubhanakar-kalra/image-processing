@@ -23,7 +23,7 @@ events.on("push", () => {
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
-    "docker login -u _json_key -p keys.json https://gcr.io",
+    "cat keys.json | docker login -u _json_key --password-stdin https://gcr.io",
 
     //"docker build -t shaxxz13/shubhuxx . ",
     //"docker pull google/cloud-sdk:latest",
