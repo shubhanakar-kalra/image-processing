@@ -23,11 +23,7 @@ events.on("push", () => {
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
-    "wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz",
-    "tar zxvf google-cloud-sdk.tar.gz && ./google-cloud-sdk/install.sh --usage-reporting=false --path-update=true",
-    "google-cloud-sdk/bin/gcloud --quiet components update",
-    "google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ./keys.json",
-    "ls -lart",
+    "docker login -u _json_key -p keys.json https://gcr.io",
 
     //"docker build -t shaxxz13/shubhuxx . ",
     //"docker pull google/cloud-sdk:latest",
