@@ -23,13 +23,13 @@ events.on("push", () => {
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
+    "curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz"
     //"docker build -t shaxxz13/shubhuxx . ",
-    "docker pull google/cloud-sdk:latest",
-    "docker run google/cloud-sdk:latest gcloud version",
-    "gcloud auth configure-docker --quiet"
+    //"docker pull google/cloud-sdk:latest",
+    //"docker run google/cloud-sdk:latest gcloud version",
     //"gcloud auth activate-service-account --key-file=keys.json"
-   // "docker login -u shaxxz13 -p shubhu9797",
-    //"docker push shaxxz13/shubhuxx"
+   //"docker login -u shaxxz13 -p shubhu9797",
+  //"docker push shaxxz13/shubhuxx"
   ]
   //job.run().then(() => {
     job2.run()
