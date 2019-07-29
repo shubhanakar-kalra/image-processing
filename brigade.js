@@ -26,7 +26,6 @@ events.on("push", () => {
     //"docker build -t shaxxz13/shubhuxx . ",
     "docker pull google/cloud-sdk:latest",
     "docker run google/cloud-sdk:latest gcloud version",
-    "gcloud -v"
     //"gcloud auth activate-service-account --key-file=keys.json"
    // "docker login -u shaxxz13 -p shubhu9797",
     //"docker push shaxxz13/shubhuxx"
