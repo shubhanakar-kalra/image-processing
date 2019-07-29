@@ -25,7 +25,7 @@ events.on("push", () => {
     "export SKIP_PREFLIGHT_CHECK=true",
     "cat keys.json | docker login -u _json_key --password-stdin https://gcr.io",
 
-    "docker build -t shaxxz13/shubhuxx . ",
+    "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
     "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx"
     //"docker pull google/cloud-sdk:latest",
     //"docker run google/cloud-sdk:latest gcloud version",
