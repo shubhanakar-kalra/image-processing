@@ -8,7 +8,8 @@ events.on("push", () => {
   job.tasks = [
    "cd src/",
     "npm i"
-      ]
+]
+
   let job2 = new Job("dockerization", "docker:stable-dind")
   job2.privileged = true;
   job2.env = {
@@ -23,9 +24,7 @@ events.on("push", () => {
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
     //"docker build -t shaxxz13/shubhuxx . ",
-    "echo pull >>",
     "docker pull google/cloud-sdk:latest",
-    "echo run >> ",
     "docker run google/cloud-sdk:latest gcloud version",
     "gcloud auth activate-service-account --key-file=keys.json"
    // "docker login -u shaxxz13 -p shubhu9797",
