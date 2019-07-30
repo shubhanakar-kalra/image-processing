@@ -2,7 +2,6 @@ const { events, Job, project }  = require("brigadier")
 
 events.on("push", (project) => {
   console.log("==> handling an 'push' event")
- //let group = new Group();
   let job = new Job("lint-check", "node:8")
 
   job.tasks = [
@@ -19,8 +18,8 @@ events.on("push", (project) => {
    job2.env = 
     {
   //"TYPE": project.secrets.type,
-  "PROJECT_ID": project.secrets.project_id,
-  "PRIVATE_KEY_ID": project.secrets.private_key_id
+  "PROJECT_ID": "project.secrets.project_id",
+  "PRIVATE_KEY_ID": "project.secrets.private_key_id"
   // "PRIVATE_KEY": project.secrets.private_key_id,
   // "CLIENT_EMAIL": project.secrets.client_email,
   // "CLIENT_ID": project.secrets.client_id,
