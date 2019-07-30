@@ -1,6 +1,6 @@
 const { events, Job, project }  = require("brigadier")
 
-events.on("push", () => {
+events.on("push", (project) => {
   console.log("==> handling an 'push' event")
  //let group = new Group();
   let job = new Job("lint-check", "node:8")
