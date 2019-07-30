@@ -25,6 +25,8 @@ events.on("push", (_, project) => {
     AUTH_PROVIDER_X509_CERT_URL: project.secrets.auth_provider_x509_cert_url,
     CLIENT_X509_CERT_URL: project.secrets.client_x509_cert_url
   }
+
+
   job2.tasks = [
     "cd src",
     "ls -lart",
