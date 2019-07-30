@@ -19,8 +19,8 @@ events.on("push", () => {
    job2.env = 
     {
   "TYPE": project.secrets.type,
-  "PROJECT_ID": project.secrets.project_id
-  // "PRIVATE_KEY_ID": project.secrets.private_key_id,
+  "PROJECT_ID": project.secrets.project_id,
+  "PRIVATE_KEY_ID": project.secrets.private_key_id
   // "PRIVATE_KEY": project.secrets.private_key_id,
   // "CLIENT_EMAIL": project.secrets.client_email,
   // "CLIENT_ID": project.secrets.client_id,
