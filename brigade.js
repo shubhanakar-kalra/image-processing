@@ -25,18 +25,16 @@ events.on("push", (_, project) => {
     AUTH_PROVIDER_X509_CERT_URL: project.secrets.auth_provider_x509_cert_url,
     CLIENT_X509_CERT_URL: project.secrets.CLIENT_X509_CERT_URL
   }
-  let envobj = JSON.parse(job2.env);
   job2.tasks = [
     "cd src",
     "ls -lart",
-    "echo $TYPE",
-    `echo ${envobj}`,
-    `echo ${project.secrets.type}`
-    // "dockerd-entrypoint.sh &",
-    // "sleep 10",
-    // "export SKIP_PREFLIGHT_CHECK=true",
+    //"echo $TYPE",
+    //`echo ${project.secrets.type}`
+    "dockerd-entrypoint.sh &",
+    "sleep 10",
+    "export SKIP_PREFLIGHT_CHECK=true",
 
-    // "cat ${} | docker login -u _json_key --password-stdin https://gcr.io",
+    "cat {$TYPE $ PROJECT_ID $PRIVATE_KEY_ID $PRIVATE_KEY $CLIENT_EMAIL $CLIENT_ID $ AUTH_URI $TOKEN_URI  $AUTH_PROVIDER_X509_CERT_URL $CLIENT_X509_CERT_URL} | docker login -u _json_key --password-stdin https://gcr.io",
     // "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
     // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx"
     // "docker pull google/cloud-sdk:latest",
