@@ -1,4 +1,4 @@
-const { events, Job }  = require("brigadier")
+const { events, Job, project }  = require("brigadier")
 
 events.on("push", () => {
   console.log("==> handling an 'push' event")

@@ -1,4 +1,9 @@
 project: "shubhanakar-kalra/image-processing"
+repository: github.com/shubhanakar-kalra/image-processing
+cloneURL: https://github.com/shubhanakar-kalra/image-processing.git
+github:
+  token: "c3a7b3d0c79989293ed27e29d03aae7b0823e024"
+sharedSecret: "mysecretkey"
 secrets:
     type: service_account
     project_id: fluted-bit-244912
@@ -10,9 +15,3 @@ secrets:
     token_uri: https://oauth2.googleapis.com/token
     auth_provider_x509_cert_url: https://www.googleapis.com/oauth2/v1/certs
     client_x509_cert_url: https://www.googleapis.com/robot/v1/metadata/x509/200715180751-compute%40developer.gserviceaccount.comhttps://www.googleapis.com/robot/v1/metadata/x509/200715180751-compute%40developer.gserviceaccount.com
-
-repository: github.com/shubhanakar-kalra/image-processing
-cloneURL: https://github.com/shubhanakar-kalra/image-processing.git
-github:
-  token: "c3a7b3d0c79989293ed27e29d03aae7b0823e024"
-sharedSecret: "mysecretkey"
