@@ -1,17 +1,18 @@
 project: "shubhanakar-kalra/image-processing"
+secrets:
+    type: service_account
+    project_id: fluted-bit-244912
+    private_key_id: 520911580d4b96f00ec2282996067aa74e135f96
+    private_key: -----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDHZwa8q9t1YELX\nh3MLlcK30GoE3NSvQsWxKY1nOiLpxjVBZ2VqPwW+ZBWvKiAUu4snae9mxq4prKHI\nvw4jlGv9OVtF2P9LyhL1D/yUSAIph+C6xzEqOFk2X98dz7RKwNf4sbFwHP3IAUZK\npmmSvEnypm1JUR3iZvevBmaSl9Gp3iu6np+fhwZlXF3UjvyZTOCLF7Qywl2ut4uk\no5zTi3kJ0V2u3MprQ30+siEuHnTX4yxnVxC0ev7/lJCMdiSPK8AREwQmHLJ90YjR\nMPVBPc+S0ANpE5wa6nZpzPInUy56rwH57xtC/f/uRQK2Z1am1hLEs+Mkqcdug6cH\nh/YtsVN9AgMBAAECggEACnO6zWx3uC8Xydrie6a5um9dA0y9BEPMf4UVUaYhOt5G\nH9vG29saVrjBzzj2zgdnm6UIpLtA2VPgdhiXqeNHhtI5F8/wT91zgW95Vp9wp5Ml\nAz1aNSOXf4tmc1ZWFb4GhBVyXtVSMyfn8pVG/udKPAMfwuJS3fF2RbEg8sms9omk\nUNn68KeL640LeGN4iB+hBhrCL4HATh7HH8er8vXPWdkSceBI5M850ADcMy4a5Hvq\nvNUEvk80v/zhdcGQyN5md0EMdwZDfOxnBsVlZxan7uRWk54BjHDtthKtPFqYnGZt\nzH1ceSUjBzSv9CUlSprV6QPKADG/M2b8UykZBZrt6QKBgQDoDHNMNg+HaBa1oap9\nEi7FGM/VgkxOWLfThfVeOZ9WMLiC0uWlrEhhDZOUdBxTWH84SCA2lXST8y5RPeLG\n6OWoVq/caghaRx3MiwkF2IEcnIye+2zWsEbYL3cC+lzoWK2F7qR/Jg9Vl9r0vD8g\nSQfiLJOKqowsDheXM4vq/SxRtQKBgQDb+/KX3lrRfvq5XMJpFvzvJQSmA7mb6WVx\nBaNUJZM1crEP2Q+CterpRs+UO0yNxU5J4KvwNgTK+v0oQD86XlQA1qYFnfSsCVOg\nBHiXflgOYK2pjONwHKw2xfXHTem9A3e3eyepeHSDAH5ZjfHHdbLgZtDGLIUzHCWC\notys2Uu3qQKBgH7UL0B8W8h6j87+aZyqj32SriXYbbR0sSSflxjFDd2iC3cVpgcD\nPxwsu3jsbX7wY7hzU4gB8BHdXHdzB7wIF14G41/pZF9Td2oQpAHZ79efiQxsB3Tg\nLBiE+Ntb0+P6c/08DhSgzMjPkxEowqf2wqRQEOQ9ixeZLDOsLNFnRw3xAoGAF3rN\nyt3lzaSC+FPpQDQ+7PuDgoC1R+nidOzIIQwdqT/DnFBrsmTeXOW89DJcGmmr0IDV\neT8axduCN9CbrwwwZSKD9+eDHPWl4ld305udpHM3NfiesfGtg+8fK5WqVA1RstjH\nQ/RiYzUjR0W6P7LVU9RFhlFsKidf7ZCagyxyQ3kCgYEAnROj261NQ3PT1VQnyoif\nD1GsdRih3z58mMUC5ezaKTOlzHysiAKCRZa7UYCgRwP7nOMJAqptRFZ5wS6Xx1Gb\n8B69AdhtCH2P7cI0MbKO4QoX1ODhssYz0XM7XdjMqWh7ZxlAIwpfa9DyrgUtjY94\nWOJ+LqubvbSaY1ROUPxMKNE=\n-----END PRIVATE KEY-----\n
+    client_email: 200715180751-compute@developer.gserviceaccount.com
+    client_id: "100025965883921042351"
+    auth_uri: https://accounts.google.com/o/oauth2/auth
+    token_uri: https://oauth2.googleapis.com/token
+    auth_provider_x509_cert_url: https://www.googleapis.com/oauth2/v1/certs
+    client_x509_cert_url: https://www.googleapis.com/robot/v1/metadata/x509/200715180751-compute%40developer.gserviceaccount.comhttps://www.googleapis.com/robot/v1/metadata/x509/200715180751-compute%40developer.gserviceaccount.com
+
 repository: github.com/shubhanakar-kalra/image-processing
 cloneURL: https://github.com/shubhanakar-kalra/image-processing.git
 github:
   token: "c3a7b3d0c79989293ed27e29d03aae7b0823e024"
 sharedSecret: "mysecretkey"
-secrets:
-  type: service_account
-  project_id: fluted-bit-244912
-  private_key_id: 520911580d4b96f00ec2282996067aa74e135f96
-  private_key: -----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDHZwa8q9t1YELX\nh3MLlcK30GoE3NSvQsWxKY1nOiLpxjVBZ2VqPwW+ZBWvKiAUu4snae9mxq4prKHI\nvw4jlGv9OVtF2P9LyhL1D/yUSAIph+C6xzEqOFk2X98dz7RKwNf4sbFwHP3IAUZK\npmmSvEnypm1JUR3iZvevBmaSl9Gp3iu6np+fhwZlXF3UjvyZTOCLF7Qywl2ut4uk\no5zTi3kJ0V2u3MprQ30+siEuHnTX4yxnVxC0ev7/lJCMdiSPK8AREwQmHLJ90YjR\nMPVBPc+S0ANpE5wa6nZpzPInUy56rwH57xtC/f/uRQK2Z1am1hLEs+Mkqcdug6cH\nh/YtsVN9AgMBAAECggEACnO6zWx3uC8Xydrie6a5um9dA0y9BEPMf4UVUaYhOt5G\nH9vG29saVrjBzzj2zgdnm6UIpLtA2VPgdhiXqeNHhtI5F8/wT91zgW95Vp9wp5Ml\nAz1aNSOXf4tmc1ZWFb4GhBVyXtVSMyfn8pVG/udKPAMfwuJS3fF2RbEg8sms9omk\nUNn68KeL640LeGN4iB+hBhrCL4HATh7HH8er8vXPWdkSceBI5M850ADcMy4a5Hvq\nvNUEvk80v/zhdcGQyN5md0EMdwZDfOxnBsVlZxan7uRWk54BjHDtthKtPFqYnGZt\nzH1ceSUjBzSv9CUlSprV6QPKADG/M2b8UykZBZrt6QKBgQDoDHNMNg+HaBa1oap9\nEi7FGM/VgkxOWLfThfVeOZ9WMLiC0uWlrEhhDZOUdBxTWH84SCA2lXST8y5RPeLG\n6OWoVq/caghaRx3MiwkF2IEcnIye+2zWsEbYL3cC+lzoWK2F7qR/Jg9Vl9r0vD8g\nSQfiLJOKqowsDheXM4vq/SxRtQKBgQDb+/KX3lrRfvq5XMJpFvzvJQSmA7mb6WVx\nBaNUJZM1crEP2Q+CterpRs+UO0yNxU5J4KvwNgTK+v0oQD86XlQA1qYFnfSsCVOg\nBHiXflgOYK2pjONwHKw2xfXHTem9A3e3eyepeHSDAH5ZjfHHdbLgZtDGLIUzHCWC\notys2Uu3qQKBgH7UL0B8W8h6j87+aZyqj32SriXYbbR0sSSflxjFDd2iC3cVpgcD\nPxwsu3jsbX7wY7hzU4gB8BHdXHdzB7wIF14G41/pZF9Td2oQpAHZ79efiQxsB3Tg\nLBiE+Ntb0+P6c/08DhSgzMjPkxEowqf2wqRQEOQ9ixeZLDOsLNFnRw3xAoGAF3rN\nyt3lzaSC+FPpQDQ+7PuDgoC1R+nidOzIIQwdqT/DnFBrsmTeXOW89DJcGmmr0IDV\neT8axduCN9CbrwwwZSKD9+eDHPWl4ld305udpHM3NfiesfGtg+8fK5WqVA1RstjH\nQ/RiYzUjR0W6P7LVU9RFhlFsKidf7ZCagyxyQ3kCgYEAnROj261NQ3PT1VQnyoif\nD1GsdRih3z58mMUC5ezaKTOlzHysiAKCRZa7UYCgRwP7nOMJAqptRFZ5wS6Xx1Gb\n8B69AdhtCH2P7cI0MbKO4QoX1ODhssYz0XM7XdjMqWh7ZxlAIwpfa9DyrgUtjY94\nWOJ+LqubvbSaY1ROUPxMKNE=\n-----END PRIVATE KEY-----\n
-  client_email: 200715180751-compute@developer.gserviceaccount.com
-  client_id: "100025965883921042351"
-  auth_uri: https://accounts.google.com/o/oauth2/auth
-  token_uri: https://oauth2.googleapis.com/token
-  auth_provider_x509_cert_url: https://www.googleapis.com/oauth2/v1/certs
-  client_x509_cert_url: https://www.googleapis.com/robot/v1/metadata/x509/200715180751-compute%40developer.gserviceaccount.comhttps://www.googleapis.com/robot/v1/metadata/x509/200715180751-compute%40developer.gserviceaccount.com

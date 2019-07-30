@@ -16,9 +16,10 @@ events.on("push", () => {
   job2.env = {
     DOCKER_DRIVER: "overlay"
   }
-   job2.env = {
-  "TYPE": projectyml.secrets.type,   
-  // "PROJECT_ID": project.secrets.project_id,
+   job2.env = 
+   {
+  "TYPE": project.secrets.type,
+  "PROJECT_ID": project.secrets.project_id
   // "PRIVATE_KEY_ID": project.secrets.private_key_id,
   // "PRIVATE_KEY": project.secrets.private_key_id,
   // "CLIENT_EMAIL": project.secrets.client_email,
@@ -27,10 +28,11 @@ events.on("push", () => {
   // "TOKEN_URI": project.secrets.token_uri,
   // "AUTH_PROVIDER_X509_CERT_URL": project.secrets.auth_provider_x509_cert_url,
   // "CLIENT_X509_CERT_URL": project.secrets.CLIENT_X509_CERT_URL
-  }
-  console.log(job2.env);
+   }
+  
+};
   job2.tasks = [
-
+    "echo ${mySecretRef}",
     "cd src",
     "ls -lart",
     // "dockerd-entrypoint.sh &",
