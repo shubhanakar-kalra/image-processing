@@ -29,6 +29,7 @@ events.on("push", (project) => {
   // "CLIENT_X509_CERT_URL": project.secrets.CLIENT_X509_CERT_URL
    };
   let envobj = JSON.stringify(job2.env);
+  console.log(envobj);
   job2.tasks = [
     "echo ${envobj}",
     "cd src",
