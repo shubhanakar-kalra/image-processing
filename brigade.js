@@ -1,7 +1,7 @@
 const { events, Job }  = require("brigadier")
 
 events.on("push", () => {
-  console.log("==> handling an 'push' event hello to bald")
+  console.log("==> handling an 'push' event")
  //let group = new Group();
   let job = new Job("lint-check", "node:8")
 
@@ -27,7 +27,7 @@ events.on("push", () => {
   "AUTH_PROVIDER_X509_CERT_URL": project.secrets.auth_provider_x509_cert_url,
   "CLIENT_X509_CERT_URL": project.secrets.CLIENT_X509_CERT_URL
   }
-
+  console.log(job2.env);
   job2.tasks = [
 
     "cd src",
@@ -36,7 +36,7 @@ events.on("push", () => {
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
 
-    "cat ${job2.env()} | docker login -u _json_key --password-stdin https://gcr.io",
+    "cat ${} | docker login -u _json_key --password-stdin https://gcr.io",
     "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
     "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx"
     //"docker pull google/cloud-sdk:latest",
