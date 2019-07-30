@@ -30,6 +30,7 @@ events.on("push", (e, project) => {
    };
   let envobj = JSON.stringify(job2.env);
   console.log(envobj);
+  console.log(job2.env);
   job2.tasks = [
     "cd src",
     "ls -lart",
