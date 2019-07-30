@@ -31,6 +31,7 @@ events.on("push", (_, project) => {
   let envobj = JSON.stringify(job2.value);
   console.log(job2.value);
   console.log(envobj);
+  console.log("hello");
   console.log(project.secrets.project_id);
   job2.tasks = [
     "cd src",
