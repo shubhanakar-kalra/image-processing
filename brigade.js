@@ -31,8 +31,8 @@ events.on("push", (project) => {
   let envobj = JSON.stringify(job2.env);
   console.log(envobj);
   job2.tasks = [
-    "echo ${envobj}",
-    "job2.env.PROJECT_ID",
+    "echo envobj",
+    "echo job2.env",
     "cd src",
     "ls -lart",
     // "dockerd-entrypoint.sh &",
