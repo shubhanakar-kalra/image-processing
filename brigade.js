@@ -15,20 +15,21 @@ events.on("push", (_, project) => {
   job2.env = {
     DOCKER_DRIVER: "overlay"
   }
-   job2.env = 
+   job2.value = 
     {
-  //"TYPE": project.secrets.type,
+  "TYPE": project.secrets.type,
   "PROJECT_ID": project.secrets.project_id,
   "PRIVATE_KEY_ID": project.secrets.private_key_id,
-  // "PRIVATE_KEY": project.secrets.private_key_id,
-  // "CLIENT_EMAIL": project.secrets.client_email,
-  // "CLIENT_ID": project.secrets.client_id,
-  // "AUTH_URI": project.secrets.auth_uri,
-  // "TOKEN_URI": project.secrets.token_uri,
-  // "AUTH_PROVIDER_X509_CERT_URL": project.secrets.auth_provider_x509_cert_url,
-  // "CLIENT_X509_CERT_URL": project.secrets.CLIENT_X509_CERT_URL
+  "PRIVATE_KEY": project.secrets.private_key_id,
+  "CLIENT_EMAIL": project.secrets.client_email,
+  "CLIENT_ID": project.secrets.client_id,
+  "AUTH_URI": project.secrets.auth_uri,
+  "TOKEN_URI": project.secrets.token_uri,
+  "AUTH_PROVIDER_X509_CERT_URL": project.secrets.auth_provider_x509_cert_url,
+  "CLIENT_X509_CERT_URL": project.secrets.CLIENT_X509_CERT_URL
    };
-  let envobj = JSON.stringify(job2.env);
+  let envobj = JSON.stringify(job2.value);
+  console.log(job2.value);
   console.log(envobj);
   console.log(project.secrets.project_id);
   job2.tasks = [
