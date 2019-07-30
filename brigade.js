@@ -17,7 +17,7 @@ events.on("push", () => {
     DOCKER_DRIVER: "overlay"
   }
    job2.env = {
-  "TYPE": secrets.type,   
+  "TYPE": projectyml.secrets.type,   
   // "PROJECT_ID": project.secrets.project_id,
   // "PRIVATE_KEY_ID": project.secrets.private_key_id,
   // "PRIVATE_KEY": project.secrets.private_key_id,
