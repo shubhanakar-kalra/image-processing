@@ -1,6 +1,6 @@
-const { events, Job, project }  = require("brigadier")
+const { events, Job }  = require("brigadier")
 
-events.on("push", (project) => {
+events.on("push", (e, project) => {
   console.log("==> handling an 'push' event")
   let job = new Job("lint-check", "node:8")
 
@@ -18,8 +18,8 @@ events.on("push", (project) => {
    job2.env = 
     {
   //"TYPE": project.secrets.type,
-  "PROJECT_ID": "project.secrets.project_id",
-  "PRIVATE_KEY_ID": "project.secrets.private_key_id"
+  "PROJECT_ID": project.secrets.project_id,
+  "PRIVATE_KEY_ID": project.secrets.private_key_id,
   // "PRIVATE_KEY": project.secrets.private_key_id,
   // "CLIENT_EMAIL": project.secrets.client_email,
   // "CLIENT_ID": project.secrets.client_id,
@@ -31,8 +31,6 @@ events.on("push", (project) => {
   let envobj = JSON.stringify(job2.env);
   console.log(envobj);
   job2.tasks = [
-    "echo envobj",
-    "echo ${job2.env.PROJECT_ID}",
     "cd src",
     "ls -lart",
     // "dockerd-entrypoint.sh &",
