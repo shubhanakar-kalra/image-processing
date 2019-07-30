@@ -29,8 +29,9 @@ events.on("push", () => {
   // "AUTH_PROVIDER_X509_CERT_URL": project.secrets.auth_provider_x509_cert_url,
   // "CLIENT_X509_CERT_URL": project.secrets.CLIENT_X509_CERT_URL
    }
+  let envobj = JSON.stringify(job2.env);
   job2.tasks = [
-    "echo ${mySecretRef}",
+    "echo ${envobj}",
     "cd src",
     "ls -lart",
     // "dockerd-entrypoint.sh &",
