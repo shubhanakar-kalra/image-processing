@@ -15,6 +15,18 @@ events.on("push", () => {
   job2.env = {
     DOCKER_DRIVER: "overlay"
   }
+  job2.env = {
+  "TYPE": project.secrets.type,   
+  "PROJECT_ID": project.secrets.project_id,
+  "PRIVATE_KEY_ID": project.secrets.private_key_id,
+  "PRIVATE_KEY": project.secrets.private_key_id,
+  "CLIENT_EMAIL": project.secrets.client_email,
+  "CLIENT_ID": project.secrets.client_id,
+  "AUTH_URI": project.secrets.auth_uri,
+  "TOKEN_URI": project.secrets.token_uri,
+  "AUTH_PROVIDER_X509_CERT_URL": project.secrets.auth_provider_x509_cert_url,
+  "CLIENT_X509_CERT_URL": project.secrets.CLIENT_X509_CERT_URL
+  }
 
   job2.tasks = [
 
@@ -23,25 +35,10 @@ events.on("push", () => {
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
-    "VERSION=1.5.0",
-    "OS=linux",
-    "ARCH=amd64",
-    "curl -fsSL `https://github.com/GoogleCloudPlatform/docker-credential-gcr/releases/download/v${VERSION}/docker-credential-gcr_${OS}_${ARCH}-${VERSION}.tar.gz` \
-    | tar xz --to-stdout ./docker-credential-gcr \
-    > /usr/bin/docker-credential-gcr && chmod +x /usr/bin/docker-credential-gcr",
-    // "apk add curl",
-    // "curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz",
-    // "mkdir -p /usr/local/gcloud",
-    "gcloud init"
-    // "tar -C /usr/local/gcloud -xvf /tmp/google-cloud-sdk.tar.gz",
-    // "echo ++++++++++++++++++++++++++++++++++++++++++",
-    // "/usr/local/gcloud/google-cloud-sdk/install.sh",
-    // "/usr/local/gcloud/google-cloud-sdk/bin/gcloud init"
 
-
-    // "cat keys.json | docker login -u _json_key --password-stdin https://gcr.io",
-    // "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
-    // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx"
+    "cat ${job2.env()} | docker login -u _json_key --password-stdin https://gcr.io",
+    "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
+    "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx"
     //"docker pull google/cloud-sdk:latest",
     //"docker run google/cloud-sdk:latest gcloud version",
     //"gcloud auth activate-service-account --key-file=keys.json"

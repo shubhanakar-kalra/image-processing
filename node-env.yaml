@@ -12,6 +12,5 @@ spec:
     - name: SECRET_USERNAME
       valueFrom:
         secretKeyRef:
-          name: my-secret
+          name: my-keys
           key: username
-
