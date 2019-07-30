@@ -17,7 +17,7 @@ events.on("push", () => {
     DOCKER_DRIVER: "overlay"
   }
    job2.env = 
-   {
+    {
   "TYPE": project.secrets.type,
   "PROJECT_ID": project.secrets.project_id
   // "PRIVATE_KEY_ID": project.secrets.private_key_id,
@@ -29,8 +29,6 @@ events.on("push", () => {
   // "AUTH_PROVIDER_X509_CERT_URL": project.secrets.auth_provider_x509_cert_url,
   // "CLIENT_X509_CERT_URL": project.secrets.CLIENT_X509_CERT_URL
    }
-  
-};
   job2.tasks = [
     "echo ${mySecretRef}",
     "cd src",
