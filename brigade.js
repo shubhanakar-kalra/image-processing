@@ -35,9 +35,9 @@ events.on("push", (_, project) => {
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
-    "echo { type: ${TYPE}, project_id: ${PROJECT_ID}, private_key_id: ${PRIVATE_KEY_ID}, private_key: ${PRIVATE_KEY}, client_email: ${CLIENT_EMAIL}, client_id: ${CLIENT_ID}, auth_uri: ${AUTH_URI}, auth_provider_x509_cert_url: ${AUTH_PROVIDER_X509_CERT_URL}, client_x509_cert_url: ${CLIENT_X509_CERT_URL} } | cat > key.json",
-    "cat key.json",
-    "cat key.json | docker login -u _json_key --password-stdin https://gcr.io",
+    "echo { type: ${TYPE}, project_id: ${PROJECT_ID}, private_key_id: ${PRIVATE_KEY_ID}, private_key: ${PRIVATE_KEY}, client_email: ${CLIENT_EMAIL}, client_id: ${CLIENT_ID}, auth_uri: ${AUTH_URI}, auth_provider_x509_cert_url: ${AUTH_PROVIDER_X509_CERT_URL}, client_x509_cert_url: ${CLIENT_X509_CERT_URL} } | docker login -u _json_key --password-stdin ht| tps://gcr.io", // | cat > key.json",
+    //"cat key.json",
+    //"cat key.json docker login -u _json_key --password-stdin ht| tps://gcr.io",
     // "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
     // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx"
     // "docker pull google/cloud-sdk:latest",
