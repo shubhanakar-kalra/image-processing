@@ -26,6 +26,7 @@ events.on("push", (_, project) => {
     CLIENT_X509_CERT_URL: project.secrets.client_x509_cert_url
   }
 
+console.log(job2)
   job2.tasks = [
     "cd src",
     "ls -lart",
