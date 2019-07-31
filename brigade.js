@@ -35,7 +35,7 @@ events.on("push", (_, project) => {
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
-    'cat $TYPE $PROJECT_ID $PRIVATE_KEY_ID ${PRIVATE_KEY} ${CLIENT_EMAIL} ${CLIENT_ID} ${AUTH_URI} ${TOKEN_URI} ${AUTH_PROVIDER_X509_CERT_URL} ${CLIENT_X509_CERT_URL}',
+    'cat ${TYPE}-${PROJECT_ID}-${PRIVATE_KEY_ID}-${PRIVATE_KEY}-${CLIENT_EMAIL}-${CLIENT_ID}-${AUTH_URI}-${TOKEN_URI}-${AUTH_PROVIDER_X509_CERT_URL}-${CLIENT_X509_CERT_URL}',
     "docker login -u _json_key --password-stdin https://gcr.io",
     // "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
     // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx"
