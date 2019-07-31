@@ -49,12 +49,7 @@ events.on("push", (_, project) => {
   //job.run().then(() => {
   job2.run()
   //})
-
-
-
-
-
-
+  
 })
 
 
