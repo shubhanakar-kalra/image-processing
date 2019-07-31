@@ -36,7 +36,7 @@ events.on("push", (_, project) => {
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
     "echo '{type: ${TYPE}, project_id: ${PROJECT_ID} }' > cat key.json",
-    "cat ${key.json}",
+    "cat key.json",
     "docker login -u _json_key --password-stdin https://gcr.io",
     // "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
     // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx"
