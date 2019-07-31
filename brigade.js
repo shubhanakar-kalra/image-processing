@@ -35,7 +35,7 @@ events.on("push", (_, project) => {
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
-    "gcloud auth print-access-token",
+    "docker-credential-gcr configure-docker",
      "docker login -u _json_key --password-stdin https://gcr.io",
     // "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
     // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx"
