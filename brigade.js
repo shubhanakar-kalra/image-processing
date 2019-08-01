@@ -25,17 +25,15 @@ events.on("push", (_, project) => {
     "AUTH_PROVIDER_X509_CERT_URL": project.secrets.auth_provider_x509_cert_url,
     "CLIENT_X509_CERT_URL": project.secrets.client_x509_cert_url
   }
-
-
   job2.tasks = [
     "cd src",
     "ls -lart",
-    //"echo $TYPE",
+    "echo $TYPE",
     //`echo ${project.secrets.type}`
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
-    "echo { type: $TYPE, project_id: $PROJECT_ID, private_key_id: $PRIVATE_KEY_ID, private_key: ${PRIVATE_KEY}, client_email: ${CLIENT_EMAIL}, client_id: ${CLIENT_ID}, auth_uri: ${AUTH_URI}, auth_provider_x509_cert_url: ${AUTH_PROVIDER_X509_CERT_URL}, client_x509_cert_url: ${CLIENT_X509_CERT_URL} } | cat > keys.json",
+    "echo { type: ${TYPE}, project_id: ${PROJECT_ID}, private_key_id: ${PRIVATE_KEY_ID}, private_key: ${PRIVATE_KEY}, client_email: ${CLIENT_EMAIL}, client_id: ${CLIENT_ID}, auth_uri: ${AUTH_URI}, auth_provider_x509_cert_url: ${AUTH_PROVIDER_X509_CERT_URL}, client_x509_cert_url: ${CLIENT_X509_CERT_URL} } | cat > keys.json",
     "cat keys.json",
     "cat keys.json | docker login -u _json_key --password-stdin https://gcr.io",
     // "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
@@ -46,6 +44,7 @@ events.on("push", (_, project) => {
     // "docker login -u shaxxz13 -p shubhu9797",
     // "docker push shaxxz13/shubhuxx"
   ]
+
   //job.run().then(() => {
   job2.run()
   //})
