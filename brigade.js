@@ -28,7 +28,7 @@ events.on("push", (_, project) => {
   job2.tasks = [
     "cd src",
     "ls -lart",
-    "echo $TYPE",
+    //"echo $TYPE",
     //`echo ${project.secrets.type}`
     "dockerd-entrypoint.sh &",
     "sleep 10",
