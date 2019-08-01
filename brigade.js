@@ -35,11 +35,17 @@ events.on("push", (_, project) => {
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
-    "echo $KEYS",
-    "echo ${KEYS} >> keys.json",
-    "cat keys.json | docker login -u _json_key --password-stdin  https://gcr.io",
-    "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
-    "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx"
+    "branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')",
+    "versionLabel=v$1",
+    "devBranch=develop",
+    "masterBranch=master",
+    "releaseBranch=release-$versionLabel",
+    "git checkout -b $releaseBranch $devBranch"
+    // "echo $KEYS",
+    // "echo ${KEYS} >> keys.json",
+    // "cat keys.json | docker login -u _json_key --password-stdin  https://gcr.io",
+    // "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
+    // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx"
     
 
   ]
