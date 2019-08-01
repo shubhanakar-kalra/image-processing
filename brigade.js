@@ -35,6 +35,7 @@ events.on("push", (_, project) => {
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
+    "apk add git",
     "branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')",
     "versionLabel=v$1",
     "devBranch=develop",
