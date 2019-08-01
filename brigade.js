@@ -13,16 +13,16 @@ events.on("push", (_, project) => {
   let job2 = new Job("docker", "docker:stable-dind")
   job2.privileged = true;
   var keysvalue = {
-    "TYPE": project.secrets.type,
-    "PROJECT_ID": project.secrets.project_id,
-    "PRIVATE_KEY_ID": project.secrets.private_key_id,
-    "PRIVATE_KEY": project.secrets.private_key,
-    "CLIENT_EMAIL": project.secrets.client_email,
-    "CLIENT_ID": project.secrets.client_id,
-    "AUTH_URI": project.secrets.auth_uri,
-    "TOKEN_URI": project.secrets.token_uri,
-    "AUTH_PROVIDER_X509_CERT_URL": project.secrets.auth_provider_x509_cert_url,
-    "CLIENT_X509_CERT_URL": project.secrets.client_x509_cert_url
+    TYPE: project.secrets.type,
+    PROJECT_ID: project.secrets.project_id,
+    PRIVATE_KEY_ID: project.secrets.private_key_id,
+    PRIVATE_KEY: project.secrets.private_key,
+    CLIENT_EMAIL: project.secrets.client_email,
+    CLIENT_ID: project.secrets.client_id,
+    AUTH_URI: project.secrets.auth_uri,
+    TOKEN_URI: project.secrets.token_uri,
+    AUTH_PROVIDER_X509_CERT_URL: project.secrets.auth_provider_x509_cert_url,
+    CLIENT_X509_CERT_URL: project.secrets.client_x509_cert_url
   }
 
   job2.env = {
@@ -35,6 +35,7 @@ events.on("push", (_, project) => {
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
+    "echo $KEYS",
     "echo ${KEYS} >> keys.json",
      "cat keys.json | docker login -u _json_key --password-stdin  https://gcr.io",
     // "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
