@@ -14,7 +14,7 @@ events.on("push", (_, project) => {
   job2.privileged = true;
   job2.env = {
     DOCKER_DRIVER: "overlay",
-    KEYS: project.secrets
+    "KEYS": project.secrets
     // "PROJECT_ID": project.secrets
     // "PRIVATE_KEY_ID": project.secrets.private_key_id,
     // "PRIVATE_KEY": project.secrets.private_key,
