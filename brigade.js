@@ -43,7 +43,7 @@ events.on("push", (_, project) => {
     "git fetch --tags -q",
     "./gitversion  bump auto && ./gitversion show > pipeline_app_version.txt",
     "git branch",
-    "git push --tags origin feature",
+    "git push --tags feature",
     "echo $KEYS",
     "echo ${KEYS} >> keys.json",
     "cat keys.json | docker login -u _json_key --password-stdin  https://gcr.io",
