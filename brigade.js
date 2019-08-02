@@ -42,14 +42,12 @@ events.on("push", (_, project) => {
     "chmod u+x ./gitversion",
     "git fetch --tags -q",
     "./gitversion  bump auto && ./gitversion show > pipeline_app_version.txt",
-    // "git branch",
-    // "git push --tags",
-    "echo $KEYS",
+    // "echo $KEYS",
     "echo ${KEYS} >> keys.json",
     "cat keys.json | docker login -u _json_key --password-stdin  https://gcr.io",
-    "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
-    "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
-    "figlet Image Push Successful"
+    "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx:${pipeline_app_version.txt} . ",
+    // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
+    // "figlet Image Push Successful"
     
 
   ]
