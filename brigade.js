@@ -41,13 +41,13 @@ events.on("push", (_, project) => {
     "wget -q -O gitversion https://github.com/screwdriver-cd/gitversion/releases/download/v1.1.1/gitversion_linux_amd64",
     "chmod u+x ./gitversion",
     "git fetch --tags -q",
-    "./gitversion  bump auto && ./gitversion show > pipeline_app_version.txt"
-
-    // "echo $KEYS",
-    // "echo ${KEYS} >> keys.json",
-    // "cat keys.json | docker login -u _json_key --password-stdin  https://gcr.io",
-    // "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
-    // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx"
+    "./gitversion  bump auto && ./gitversion show > pipeline_app_version.txt",
+    "echo $KEYS",
+    "echo ${KEYS} >> keys.json",
+    "cat keys.json | docker login -u _json_key --password-stdin  https://gcr.io",
+    "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
+    "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
+    "figlet Image Push Successful"
     
 
   ]
