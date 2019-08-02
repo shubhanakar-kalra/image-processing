@@ -32,16 +32,17 @@ events.on("push", (_, project) => {
   job2.tasks = [
     "cd src",
     "ls -lart",
+    "apk add figlet",
     "dockerd-entrypoint.sh &",
     "sleep 10",
     "export SKIP_PREFLIGHT_CHECK=true",
     "apk add git",
-    "branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')",
-    "versionLabel=v$1",
-    "devBranch=develop",
-    "masterBranch=master",
-    "releaseBranch=release-$versionLabel",
-    "git checkout -b $releaseBranch $devBranch"
+    "figlet SEMVER",
+    "wget -q -O gitversion https://github.com/screwdriver-cd/gitversion/releases/download/v1.1.1/gitversion_linux_amd64",
+    "chmod u+x ./gitversion",
+    "git fetch --tags -q",
+    "./gitversion  bump auto && ./gitversion show > pipeline_app_version.txt"
+
     // "echo $KEYS",
     // "echo ${KEYS} >> keys.json",
     // "cat keys.json | docker login -u _json_key --password-stdin  https://gcr.io",
