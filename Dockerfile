@@ -2,6 +2,8 @@ FROM node:current-alpine
 
 WORKDIR /app
 
+
+COPY version /app
 COPY package.json /app
 COPY src /app/src
 COPY public /app/public
