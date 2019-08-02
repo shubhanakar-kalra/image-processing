@@ -24,10 +24,11 @@ events.on("push", (_, project) => {
     auth_provider_x509_cert_url: project.secrets.auth_provider_x509_cert_url,
     client_x509_cert_url: project.secrets.client_x509_cert_url
   }
+  var verr = "0.0.8";
   job2.env = {
     DOCKER_DRIVER: "overlay",
     KEYS: JSON.stringify(keysvalue),
-    ver : version
+    ver : verr
   }
   job2.tasks = [
     "cd src",
