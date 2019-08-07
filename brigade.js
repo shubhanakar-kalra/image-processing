@@ -24,7 +24,7 @@ events.on("push", (_, project) => {
     auth_provider_x509_cert_url: project.secrets.auth_provider_x509_cert_url,
     client_x509_cert_url: project.secrets.client_x509_cert_url
   }
-  var verr = "0.0.8";
+  var verr = "./gitversion";
   job2.env = {
     DOCKER_DRIVER: "overlay",
     KEYS: JSON.stringify(keysvalue),
@@ -39,7 +39,7 @@ events.on("push", (_, project) => {
     "export SKIP_PREFLIGHT_CHECK=true",
     "apk add git",
     "figlet SEMVER",
-    "wget -O gitversion https://github.com/screwdriver-cd/gitversion/releases/download/v1.1.1/gitversion_linux_amd64",
+    "wget -q -O gitversion https://github.com/screwdriver-cd/gitversion/releases/download/v1.1.1/gitversion_linux_amd64",
     "chmod u+x ./gitversion",
     "git fetch --tags -q",
     "./gitversion  bump auto && ./gitversion show > pipeline_app_version.txt",
