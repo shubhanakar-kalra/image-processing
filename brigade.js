@@ -3,7 +3,7 @@ const { events, Job } = require("brigadier")
 events.on("push", (_, project) => {
   console.log("==> handling an 'push' event")
   let job = new Job("lint-check", "node:8")
-
+job1.storage.enabled = true;
   job.tasks = [
     "cd src/",
     // "npm i"
@@ -11,6 +11,7 @@ events.on("push", (_, project) => {
   ]
 
   let job2 = new Job("docker", "docker:stable-dind")
+  job2.storage.enabled = true;
   job2.privileged = true;
   var keysvalue = {
     type: project.secrets.type,
@@ -24,7 +25,7 @@ events.on("push", (_, project) => {
     auth_provider_x509_cert_url: project.secrets.auth_provider_x509_cert_url,
     client_x509_cert_url: project.secrets.client_x509_cert_url
   }
-  var verr = "./gitversion";
+  var verr = "0.0.5";
   job2.env = {
     DOCKER_DRIVER: "overlay",
     KEYS: JSON.stringify(keysvalue),
