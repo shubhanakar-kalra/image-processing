@@ -8,7 +8,7 @@ events.on("push", (_, project) => {
     "cd src/",
     "npm i",
     "ls -lart",
-    "./gitversion > /mnt/brigade/share/gitversion.txt"
+    "./gitversion > /mnt/brigade/share/gitteah.txt"
   ]
 
   let job2 = new Job("docker", "docker:stable-dind")
@@ -41,6 +41,7 @@ events.on("push", (_, project) => {
     "export SKIP_PREFLIGHT_CHECK=true",
     "apk add git",
     "figlet SEMVER",
+    "cat /mnt/brigade/share/gitteah.txt",
     "wget -q -O gitversion https://github.com/screwdriver-cd/gitversion/releases/download/v1.1.1/gitversion_linux_amd64",
     "chmod u+x ./gitversion",
     "git fetch --tags -q",
