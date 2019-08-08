@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Dashboard from './containers/dashboard';
 import './App.css';
 
