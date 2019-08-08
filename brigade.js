@@ -11,7 +11,7 @@ events.on("push", (_, project) => {
   ]
 
   let job2 = new Job("docker", "docker:stable-dind")
-  //job2.storage.enabled = true
+  job2.storage.enabled = true
   job2.privileged = true;job1.storage.enabled = true;
   var keysvalue = {
     type: project.secrets.type,
