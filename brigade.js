@@ -8,7 +8,7 @@ events.on("push", (_, project) => {
     "cd src/",
     "npm i",
     "ls -lart",
-    "./gitversion > /srv/nfs-provisioner/gitversion.txt"
+    "./gitversion > /mnt/brigade/share/gitversion.txt"
   ]
 
   let job2 = new Job("docker", "docker:stable-dind")
