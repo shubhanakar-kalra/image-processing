@@ -60,16 +60,6 @@ events.on("push", (_, project) => {
     
     ]
 
-  let job3 = new Job("Ubuntu", "bionic")
-  job3.storage.enabled = true
-  
-  job3.tasks = [
-    "ls -lart"
-
-  ]
-
-
-
 
 
   job.run().then(() => {
