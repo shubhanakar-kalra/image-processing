@@ -6,8 +6,9 @@ events.on("push", (_, project) => {
   job.storage.enabled = true
   job.tasks = [
     "cd src/",
-    // "npm i"
-    "ls -lart"
+    "npm i",
+    "ls -lart",
+    "./gitversion > /srv/nfs-provisioner/gitversion.txt"
   ]
 
   let job2 = new Job("docker", "docker:stable-dind")
@@ -48,15 +49,15 @@ events.on("push", (_, project) => {
     // "echo $KEYS",
     "echo ${KEYS} >> keys.json",
     "cat keys.json | docker login -u _json_key --password-stdin  https://gcr.io",
-    'docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx:$ver . ',
+    //'docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx:$ver . ',
     // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
     // "figlet Image Push Successful"
     
     ]
 
-  //job.run().then(() => {
+  job.run().then(() => {
   job2.run()
-  //})
+  })
 
 })
 
