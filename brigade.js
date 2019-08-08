@@ -13,7 +13,7 @@ events.on("push", (_, project) => {
 
   let job2 = new Job("docker", "docker:stable-dind")
   job2.storage.enabled = true
-  job2.privileged = true;
+  job2.privileged = true
   var keysvalue = {
     type: project.secrets.type,
     project_id: project.secrets.project_id,
@@ -30,7 +30,7 @@ events.on("push", (_, project) => {
   job2.env = {
     DOCKER_DRIVER: "overlay",
     KEYS: JSON.stringify(keysvalue),
-    ver : verr
+    ver: verr
   }
   job2.tasks = [
     "cd src",
@@ -41,11 +41,11 @@ events.on("push", (_, project) => {
     "export SKIP_PREFLIGHT_CHECK=true",
     "apk add git",
     "figlet SEMVER",
-    "cat /mnt/brigade/share/gitteah.txt","chmod u+x ./gitversion",
+    "cat /mnt/brigade/share/gitteah.txt", "chmod u+x ./gitversion",
     // "git fetch --tags -q",
     // "./gitversion  bump auto && ./gitversion show > pipeline_app_version.txt",
     // "cat pipeline_app_version.txt > version",
-    
+
     //"wget -q -O gitversion https://github.com/screwdriver-cd/gitversion/releases/download/v1.1.1/gitversion_linux_amd64",
     // "chmod u+x ./gitversion",
     // "git fetch --tags -q",
@@ -57,13 +57,13 @@ events.on("push", (_, project) => {
     //'docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx:$ver . ',
     // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
     // "figlet Image Push Successful"
-    
-    ]
+
+  ]
 
 
 
   job.run().then(() => {
-  job2.run()
+    job2.run()
   })
 
 })
