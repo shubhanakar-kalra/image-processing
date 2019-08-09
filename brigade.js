@@ -63,7 +63,7 @@ events.on("push", (_, project) => {
     // "figlet Image Push Successful"
 
   ]
-let job2 = new Job("ubuntu", "bionic")
+let job2 = new Job("ubuntu", "ubuntu")
 job2.storage.enabled = true
 
 job2.tasks = [
