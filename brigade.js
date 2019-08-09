@@ -8,10 +8,12 @@ events.on("push", (_, project) => {
     "cd src/",
     "npm i",
     "npm i -g eslint",
-    "./gitversion > /mnt/brigade/share/gitteah.txt"
+    "chmod u+x ./gitversion",
+    "./gitversion > /mnt/brigade/share/gitteah.txt",
+    "eslint --fix-dry-run ."
   ]
 
-  
+
   let job2 = new Job("docker", "docker:stable-dind")
   job2.storage.enabled = true
   job2.privileged = true;
