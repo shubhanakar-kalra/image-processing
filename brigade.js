@@ -43,9 +43,9 @@ events.on("push", (_, project) => {
     "figlet SEMVER",
     "cat /mnt/brigade/share/gitteah.txt",
     "chmod u+x ./gitversion",
-    // "git fetch --tags -q",
-    // "./gitversion  bump auto && ./gitversion show > pipeline_app_version.txt",
-    // "cat pipeline_app_version.txt > version",
+    "git fetch --tags -q",
+    "./gitversion  bump auto && ./gitversion show > pipeline_app_version.txt",
+    "cat pipeline_app_version.txt > version",
 
     //"wget -q -O gitversion https://github.com/screwdriver-cd/gitversion/releases/download/v1.1.1/gitversion_linux_amd64",
     // "chmod u+x ./gitversion",
