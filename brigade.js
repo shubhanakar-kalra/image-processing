@@ -64,9 +64,9 @@ events.on("push", (_, project) => {
 
   ]
 let job2 = new Job("ubuntu", "bionic")
-job3.storage.enabled = true
+job2.storage.enabled = true
 
-job3.tasks = [
+job2.tasks = [
 
     "ls -lart"
 
@@ -74,9 +74,10 @@ job3.tasks = [
 
 
 
-
+  job2.run()
   job.run().then(() => {
     job1.run()
   })
+  
 
 })
