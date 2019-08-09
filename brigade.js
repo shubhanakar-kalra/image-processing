@@ -72,6 +72,6 @@ job2.tasks = [
 
 ]
 
-  Group.runEach([job2, job1, job3])
+  Group.runEach([job2, job1, job])
 
 })
