@@ -9,8 +9,7 @@ events.on("push", (_, project) => {
     "npm i",
     "npm i -g eslint",
     "chmod u+x ./gitversion",
-    "./gitversion > /mnt/brigade/share/gitteah.txt",
-    "eslint --fix-dry-run ."
+    "./gitversion > /mnt/brigade/share/gitteah.txt"
   ]
 
 
