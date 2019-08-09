@@ -14,9 +14,9 @@ events.on("push", (_, project) => {
   ]
 
 
-  let job2 = new Job("docker", "docker:stable-dind")
-  job2.storage.enabled = true
-  job2.privileged = true;
+  let job1 = new Job("docker", "docker:stable-dind")
+  job1.storage.enabled = true
+  job1.privileged = true;
   var keysvalue = {
     type: project.secrets.type,
     project_id: project.secrets.project_id,
@@ -30,12 +30,12 @@ events.on("push", (_, project) => {
     client_x509_cert_url: project.secrets.client_x509_cert_url
   }
   var verr = "0.0.5";
-  job2.env = {
+  job1.env = {
     DOCKER_DRIVER: "overlay",
     KEYS: JSON.stringify(keysvalue),
     ver: verr
   }
-  job2.tasks = [
+  job1.tasks = [
     "cd src",
     "ls -lart",
     "apk add figlet",
@@ -63,9 +63,20 @@ events.on("push", (_, project) => {
     // "figlet Image Push Successful"
 
   ]
+let job2 = new Job("ubuntu", "bionic")
+job3.storage.enabled = true
+
+job3.tasks = [
+
+    "ls -lart"
+
+]
+
+
+
 
   job.run().then(() => {
-    job2.run()
+    job1.run()
   })
 
 })
