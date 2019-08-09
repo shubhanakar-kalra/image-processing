@@ -1,4 +1,4 @@
-const { events, Job }  = require("brigadier")
+const { events, Job, Group }  = require("brigadier")
 
 events.on("push", (_, project) => {
   console.log("==> handling an 'push' event")
@@ -72,12 +72,6 @@ job2.tasks = [
 
 ]
 
-
-
-  job2.run()
-  job.run().then(() => {
-    job1.run()
-  })
-  
+  Group.runEach([job2, job1, job3])
 
 })
