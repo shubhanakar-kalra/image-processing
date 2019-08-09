@@ -11,6 +11,7 @@ events.on("push", (_, project) => {
     "./gitversion > /mnt/brigade/share/gitteah.txt"
   ]
 
+  
   let job2 = new Job("docker", "docker:stable-dind")
   job2.storage.enabled = true
   job2.privileged = true;
