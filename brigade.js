@@ -76,6 +76,7 @@ job2.tasks = [
     --key-file=/mnt/brigade/share/keys.json --project=fluted-bit-244912",
     "gcloud container clusters get-credentials standard-cluster-1 --zone us-central1-a --project fluted-bit-244912"
     
+    
 ]
 
   Group.runEach([job1, job2])
