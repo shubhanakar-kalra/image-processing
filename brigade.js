@@ -69,12 +69,10 @@ job2.storage.enabled = true
 job2.tasks = [
 
     "ls -lart",
-    "ls",
     "kubectl",
     "apk add figlet",
     "figlet kubectl done",
-    "kubectl create -f rbac-config.yaml",
-    "helm init --service-account tiller --history-max 200",
+    "helm init --automount-service-account false",
     "figlet helm done",
     "gcloud",
     "gcloud done"
