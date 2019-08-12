@@ -69,6 +69,7 @@ job2.storage.enabled = true
 job2.tasks = [
 
     "ls -lart",
+    "ls",
     "kubectl",
     "apk add figlet",
     "kubectl get serviceaccounts",
