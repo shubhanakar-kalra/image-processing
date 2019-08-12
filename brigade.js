@@ -74,10 +74,7 @@ job2.tasks = [
     "apk add figlet",
     "kubectl get serviceaccounts",
     "figlet kubectl done",
-    "helm init --service-account default",
-    "figlet helm done",
-    "gcloud",
-    "figlet gcloud done"
+    "helm init --service-account default"
     
 ]
   job2.run();
