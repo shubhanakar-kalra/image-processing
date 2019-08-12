@@ -44,7 +44,7 @@ events.on("push", (_, project) => {
     "export SKIP_PREFLIGHT_CHECK=true",
     "apk add git",
     "figlet SEMVER",
-    "cat /mnt/brigade/share/gitteah.txt",
+    //"cat /mnt/brigade/share/gitteah.txt",
     "chmod u+x ./gitversion",
     "git fetch --tags -q",
     "./gitversion  bump auto && ./gitversion show > pipeline_app_version.txt",
