@@ -63,15 +63,17 @@ events.on("push", (_, project) => {
     // "figlet Image Push Successful"
 
   ]
-let job2 = new Job("ubuntu", "ubuntu")
+let job2 = new Job("self", "shaxxz13/masterchief")
 job2.storage.enabled = true
 
 job2.tasks = [
 
-    "ls -lart"
-
+    "ls -lart",
+    "kubectl",
+    "helm",
+    "git"
 ]
-
-  Group.runEach([job2, job1, job])
+  job2.run();
+  //Group.runEach([job2, job1, job])
 
 })
