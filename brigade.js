@@ -70,11 +70,7 @@ job2.tasks = [
 
     "ls -lart",
     "ls",
-    "kubectl",
-    "apk add figlet",
-    "kubectl get serviceaccounts",
-    "figlet kubectl done",
-    "kubectl config get-contexts"
+    "gcloud auth"
     
 ]
   job2.run();
