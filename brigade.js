@@ -77,7 +77,7 @@ job2.tasks = [
     "helm init --service-account default",
     "figlet helm done",
     "gcloud",
-    "gcloud done"
+    "figlet gcloud done"
     
 ]
   job2.run();
