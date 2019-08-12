@@ -73,6 +73,7 @@ job2.tasks = [
     "ls",
     "gcloud auth activate-service-account --key-file=/mnt/brigade/share/keys.json --project=fluted-bit-244912",
     "gcloud config set project fluted-bit-244912",
+    "gcloud components update"
     //"gcloud container clusters get-credentials standard-cluster-1 --zone us-central1-a --project fluted-bit-244912"
     
 
