@@ -57,6 +57,7 @@ events.on("push", (_, project) => {
     // "cat pipeline_app_version.txt > version",
     // // "echo $KEYS",
     "echo ${KEYS} >> keys.json",
+    "keys.json > /mnt/brigade/share/keys.json",
     "cat keys.json | docker login -u _json_key --password-stdin  https://gcr.io",
     //'docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx:$ver . ',
     // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
@@ -70,9 +71,12 @@ job2.tasks = [
 
     "ls -lart",
     "ls",
-    "gcloud auth"
+    "gcloud auth activate-service-account \
+      shubhanakar.kalra@successive.tech \
+      --key-file= /mnt/brigade/share/keys.json --project=fluted-bit-244912"
     
 ]
+  job1.run();
   job2.run();
   //Group.runEach([job2, job1, job])
 
