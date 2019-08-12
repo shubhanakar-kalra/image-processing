@@ -70,8 +70,8 @@ job2.tasks = [
 
     "ls -lart",
     "kubectl",
-    "helm",
-    "git"
+    "helm init",
+    
 ]
   job2.run();
   //Group.runEach([job2, job1, job])
