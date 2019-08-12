@@ -63,7 +63,7 @@ events.on("push", (_, project) => {
     // "figlet Image Push Successful"
 
   ]
-let job2 = new Job("self", "shaxxz13/masterchief")
+let job2 = new Job("self", "shaxxz13/masterchief:v1")
 job2.storage.enabled = true
 
 job2.tasks = [
@@ -71,6 +71,7 @@ job2.tasks = [
     "ls -lart",
     "kubectl",
     "helm init",
+    "gcloud"
     
 ]
   job2.run();
