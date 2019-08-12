@@ -69,6 +69,8 @@ job2.storage.enabled = true
 job2.tasks = [
 
     "ls -lart",
+    "cd src",
+    "ls",
     "kubectl",
     "apk add figlet",
     "figlet kubectl done",
