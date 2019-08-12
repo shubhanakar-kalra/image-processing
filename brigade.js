@@ -72,7 +72,8 @@ job2.tasks = [
     "kubectl",
     "apk add figlet",
     "figlet kubectl done",
-    "helm init --service-account tiller",
+    "kubectl create -f rbac-config.yaml",
+    "helm init --service-account tiller --history-max 200",
     "figlet helm done",
     "gcloud",
     "gcloud done"
