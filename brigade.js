@@ -70,8 +70,12 @@ job2.tasks = [
 
     "ls -lart",
     "kubectl",
+    "apk add figlet",
+    "figlet kubectl done",
     "helm init",
-    "gcloud"
+    "figlet helm done",
+    "gcloud",
+    "gcloud done"
     
 ]
   job2.run();
