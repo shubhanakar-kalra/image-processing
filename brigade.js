@@ -75,7 +75,7 @@ job2.tasks = [
     200715180751-compute@developer.gserviceaccount.com \
     --key-file=/mnt/brigade/share/keys.json --project=fluted-bit-244912",
     "gcloud ",
-    "kubectl config get-contexts"
+    "kubectl config use-contexts gke_fluted-bit-244912_us-central1-a_standard-cluster-1"
     
 ]
 
