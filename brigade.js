@@ -72,7 +72,7 @@ job2.tasks = [
     "kubectl",
     "apk add figlet",
     "figlet kubectl done",
-    "helm init",
+    "helm init --service-account tiller",
     "figlet helm done",
     "gcloud",
     "gcloud done"
