@@ -57,7 +57,7 @@ events.on("push", (_, project) => {
     // "cat pipeline_app_version.txt > version",
     // // "echo $KEYS",
     "echo ${KEYS} >> keys.json",
-    "keys.json > /mnt/brigade/share/keys.json",
+    "cat keys.json > /mnt/brigade/share/keys.json",
     "cat keys.json | docker login -u _json_key --password-stdin  https://gcr.io",
     //'docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx:$ver . ',
     // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
