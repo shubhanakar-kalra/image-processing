@@ -72,7 +72,7 @@ job2.tasks = [
     "kubectl",
     "apk add figlet",
     "figlet kubectl done",
-    "helm init --automount-service-account false",
+    "helm init --service-account default",
     "figlet helm done",
     "gcloud",
     "gcloud done"
