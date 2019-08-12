@@ -73,7 +73,7 @@ job2.tasks = [
     "ls",
     "gcloud auth activate-service-account \
       shubhanakar.kalra@successive.tech \
-      --key-file= /mnt/brigade/share/keys.json --project=fluted-bit-244912"
+      --key-file=/mnt/brigade/share/keys.json --project=fluted-bit-244912"
     
 ]
 
