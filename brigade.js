@@ -76,8 +76,7 @@ job2.tasks = [
       --key-file= /mnt/brigade/share/keys.json --project=fluted-bit-244912"
     
 ]
-  job1.run();
-  job2.run();
-  //Group.runEach([job2, job1, job])
+
+  Group.runEach([job1, job2])
 
 })
