@@ -71,6 +71,7 @@ job2.tasks = [
     "ls -lart",
     "kubectl",
     "apk add figlet",
+    "k get serviceaccounts",
     "figlet kubectl done",
     "helm init --service-account default",
     "figlet helm done",
