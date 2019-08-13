@@ -71,7 +71,7 @@ job2.tasks = [
 
     "ls",
     "apk add figlet",
-    "gcloud auth activate-service-account 200715180751-compute@developer.gserviceaccount.com --key-file=/mnt/brigade/share/keys.json --project=fluted-bit-244912",    
+    "gcloud auth activate-service-account --key-file=/mnt/brigade/share/keys.json ",    
     "figlet AUTH",
     "gcloud config set project fluted-bit-244912",
     "figlet SET PROJECT",
