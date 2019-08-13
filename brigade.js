@@ -77,7 +77,9 @@ job2.tasks = [
     "gcloud config set project fluted-bit-244912",
     "gcloud auth activate-service-account --key-file=/mnt/brigade/share/keys.json",    
     "figlet AUTH",
-    //"kubectl get clusterrolebinding",
+    "kubectl -n kube-system create serviceaccount tiller",
+    "kubectl create clusterrolebinding tiller --clusterrole clusteradmin=kube-system:tiller",
+    "kubectl get clusterrolebinding",
     "figlet RB check  grep",
     "gcloud info | grep Account",
 
