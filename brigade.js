@@ -78,7 +78,6 @@ job2.tasks = [
     "kubectl config view",
     "figlet KUBECONFIG",
     "kubectl get pods"
-    
 
 ]
 
