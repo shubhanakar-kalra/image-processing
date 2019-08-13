@@ -75,9 +75,7 @@ job2.tasks = [
     "ls -lart",
     "gcloud config set project fluted-bit-244912",
     "ls -lart",
-
-    "kubectl get pods",
-    "gcloud auth list"
+    "k config use-context gke_fluted-bit-244912_us-central1-a_standard-cluster-1"
     
 
 ]
