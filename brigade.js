@@ -59,9 +59,7 @@ events.on("push", (_, project) => {
     "echo ${KEYS} >> keys.json",
     "cat keys.json > /mnt/brigade/share/keys.json",
     "cat keys.json | docker login -u _json_key --password-stdin  https://gcr.io",
-    //'docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx:$ver . ',
-    // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
-    // "figlet Image Push Successful"
+    
 
   ]
 let job2 = new Job("self", "dhirwanashish/asd-devops:v1")
@@ -78,7 +76,11 @@ job2.tasks = [
     "figlet SET PROJECT",
     "kubectl config view",
     "figlet KUBECONFIG",
-    "kubectl get pods"
+    "docker login -u shaxxz13 -p shubhu9797",
+    "figlet Docker login",
+    'docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx:$ver . ',
+    "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
+    "figlet Image Push Successful"
     
 
 ]
