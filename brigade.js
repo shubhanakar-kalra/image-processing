@@ -77,14 +77,14 @@ job2.tasks = [
     "gcloud config set project fluted-bit-244912",
     "gcloud auth activate-service-account --key-file=/mnt/brigade/share/keys.json",    
     "figlet AUTH",
+    "kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user gke_fluted-bit-244912_us-central1-a_standard-cluster-1",
     "figlet SET PROJECT",
     "kubectl config view",
-    "helm init",
-    "figlet INIT",
+    "figlet CONFIG",
     "docker login -u shaxxz13 -p shubhu9797",
     "figlet Docker login",
     "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
-    "gcloud docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
+    "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
     "figlet Image Push Successful"
     
 
