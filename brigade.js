@@ -76,6 +76,7 @@ job2.tasks = [
     "gcloud config set project fluted-bit-244912",
     "gcloud auth list"
     
+
     
     //"gcloud container clusters get-credentials standard-cluster-1 --zone us-central1-a --project fluted-bit-244912"
     
