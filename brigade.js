@@ -69,13 +69,14 @@ job2.storage.enabled = true
 
 job2.tasks = [
 
-    "ls -lart",
     "ls",
-    "gcloud auth activate-service-account 200715180751-compute@developer.gserviceaccount.com --key-file=/mnt/brigade/share/keys.json --project=fluted-bit-244912",
-    "ls -lart",
+    "apk add figlet",
+    "gcloud auth activate-service-account 200715180751-compute@developer.gserviceaccount.com --key-file=/mnt/brigade/share/keys.json --project=fluted-bit-244912",    
+    "figlet AUTH",
     "gcloud config set project fluted-bit-244912",
-    "ls -lart",
-    "k config use-context gke_fluted-bit-244912_us-central1-a_standard-cluster-1"
+    "figlet GCLOUD SET PROJECT",
+    "k config use-context gke_fluted-bit-244912_us-central1-a_standard-cluster-1",
+    "figlet KUBECONFIG"
     
 
 ]
