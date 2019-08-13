@@ -76,7 +76,8 @@ job2.tasks = [
     "gcloud config set project fluted-bit-244912",
     "figlet SET PROJECT",
     "kubectl config view",
-    "figlet KUBECONFIG"
+    "figlet KUBECONFIG",
+    "kubectl get pods"
     
 
 ]
