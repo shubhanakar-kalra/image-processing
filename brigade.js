@@ -75,7 +75,7 @@ job2.tasks = [
     "figlet AUTH",
     "gcloud config set project fluted-bit-244912",
     "figlet SET PROJECT",
-    "kubectl config use-context gke_fluted-bit-244912_us-central1-a_standard-cluster-1",
+    "kubectl config get-contexts",
     "figlet KUBECONFIG"
     
 
