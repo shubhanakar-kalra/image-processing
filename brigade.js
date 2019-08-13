@@ -74,6 +74,7 @@ job2.tasks = [
     "gcloud components update",
     "gcloud auth activate-service-account 200715180751-compute@developer.gserviceaccount.com --key-file=/mnt/brigade/share/keys.json --project=fluted-bit-244912",
     "ls -lart",
+    "gcloud config set container/use_client_certificate True",
     "kubectl version",
     "gcloud container clusters get-credentials maincluster --zone us-central1-a --project fluted-bit-244912",
     "ls -lart",
