@@ -64,7 +64,7 @@ events.on("push", (_, project) => {
   ]
 let job2 = new Job("self", "dhirwanashish/asd-devops:v1")
 job2.storage.enabled = true
-
+job2.privileged = true;
 job2.tasks = [
 
     "dockerd-entrypoint.sh &",
