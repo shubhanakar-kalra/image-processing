@@ -78,7 +78,7 @@ job2.tasks = [
     "figlet KUBECONFIG",
     "docker login -u shaxxz13 -p shubhu9797",
     "figlet Docker login",
-    'docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx:$ver . ',
+    "docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
     "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
     "figlet Image Push Successful"
     
