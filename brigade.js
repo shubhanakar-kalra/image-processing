@@ -69,11 +69,12 @@ job2.storage.enabled = true
 
 job2.tasks = [
 
-    "ls",
+    "dockerd-entrypoint.sh &",
+    "gcloud auth configure-docker",
     "apk add figlet",
+    "gcloud config set project fluted-bit-244912",
     "gcloud auth activate-service-account --key-file=/mnt/brigade/share/keys.json",    
     "figlet AUTH",
-    "gcloud config set project fluted-bit-244912",
     "figlet SET PROJECT",
     "kubectl config view",
     "figlet KUBECONFIG",
