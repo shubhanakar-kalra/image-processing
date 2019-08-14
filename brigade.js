@@ -77,24 +77,27 @@ job2.tasks = [
     "gcloud auth activate-service-account --key-file=/mnt/brigade/share/keys.json", 
     "gcloud config set project fluted-bit-244912",   
     "figlet AUTH",
-    "kubectl -n kube-system create serviceaccount tiller",
-    "kubectl create clusterrolebinding tiller --clusterrole clusteradmin=kube-system:tiller",
-    "kubectl get clusterrolebinding",
     "figlet RB check  grep",
     "gcloud info | grep Account",
-
-    //"kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user gke_fluted-bit-244912_us-central1-a_standard-cluster-1",
     "figlet SET PROJECT",
     "kubectl config view",
     "figlet CONFIG",
     "docker login -u shaxxz13 -p shubhu9797",
     "figlet Docker login",
-    //"docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
-   // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
+    "",
+      //"docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
+      // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
     "figlet Image Push Successful"
     
-
+    
 ]
+
+  // let helmtask = new Job("helm", "dhirwanashish/asd-devops:v1")
+  // helmtask.storage.enabled = true;
+  // helmtask.tasks = [
+
+
+// ];
 
   Group.runEach([job1, job2])
 
