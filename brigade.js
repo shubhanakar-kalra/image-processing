@@ -71,6 +71,7 @@ job2.storage.enabled = true
 job2.privileged = true;
 job2.tasks = [
     "cd /mnt/brigade/share",
+    "cd /src",
     "dockerd-entrypoint.sh &",
     "gcloud auth configure-docker",
     "apk add figlet",
