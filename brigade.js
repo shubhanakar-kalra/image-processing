@@ -86,6 +86,7 @@ job2.tasks = [
     "docker login -u shaxxz13 -p shubhu9797",
     "figlet Docker login",
     "helm init --history-max 200",
+    "gcloud info",
       //"docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
       // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
     "figlet Image Push Successful"
