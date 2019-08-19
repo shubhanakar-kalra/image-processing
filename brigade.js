@@ -84,9 +84,10 @@ job2.tasks = [
     "figlet CONFIG",
     "docker login -u shaxxz13 -p shubhu9797",
     "figlet Docker login",
-    "kubectl create serviceaccount --namespace kube-system tiller",
-    "kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller",
-    "helm ls",
+    "helm init --history-max 200",
+    // "kubectl create serviceaccount --namespace kube-system tiller",
+    // "kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller",
+    // "helm ls",
       //"docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
       // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
     "figlet Image Push Successful"
