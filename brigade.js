@@ -87,9 +87,9 @@ job2.tasks = [
     "figlet Docker login",
     "helm init --history-max 200",
     "cd master",
-    "helm upgrade bunking-ocelot .",
-      //"docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
-      // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
+    "helm upgrade --set image.repository=shaxxz13/imageprocess --set image.tag=latest bunking-ocelot .",
+    //"docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
+    // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
     "figlet Image Push Successful"
 ]
 
