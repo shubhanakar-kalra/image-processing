@@ -70,7 +70,7 @@ job2.env = {
 job2.storage.enabled = true
 job2.privileged = true;
 job2.tasks = [
-
+    "cd src",
     "dockerd-entrypoint.sh &",
     "gcloud auth configure-docker",
     "apk add figlet",
