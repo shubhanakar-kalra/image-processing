@@ -88,7 +88,7 @@ job2.tasks = [
     "helm init --history-max 200",
     "gcloud info",
     "cd master",
-    "helm uprgade bunking-ocelot .",
+    "helm upgrade bunking-ocelot .",
       //"docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
       // "docker push gcr.io/fluted-bit-244912/shaxxz13/shubhuxx",
     "figlet Image Push Successful"
