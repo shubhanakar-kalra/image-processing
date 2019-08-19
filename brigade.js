@@ -93,6 +93,7 @@ job2.tasks = [
     "figlet Image Push Successful"
 ]
 
+
   Group.runEach([job1, job2])
 
 })
