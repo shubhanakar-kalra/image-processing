@@ -92,13 +92,6 @@ job2.tasks = [
     "figlet Image Push Successful"
 ]
 
-  // let helmtask = new Job("helm", "dhirwanashish/asd-devops:v1")
-  // helmtask.storage.enabled = true;
-  // helmtask.tasks = [
-
-
-// ];
-
   Group.runEach([job1, job2])
 
 })
