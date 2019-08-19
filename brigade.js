@@ -85,6 +85,7 @@ job2.tasks = [
     "figlet CONFIG",
     "docker login -u shaxxz13 -p shubhu9797",
     "figlet Docker login",
+    "kubectl get serviceaccounts",
     "helm init --history-max 200",
     // "kubectl create serviceaccount --namespace kube-system tiller",
     // "kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller",
