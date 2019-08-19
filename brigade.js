@@ -86,7 +86,6 @@ job2.tasks = [
     "docker login -u shaxxz13 -p shubhu9797",
     "figlet Docker login",
     "helm init --history-max 200",
-    "gcloud info",
     "cd master",
     "helm upgrade bunking-ocelot .",
       //"docker build -t gcr.io/fluted-bit-244912/shaxxz13/shubhuxx . ",
